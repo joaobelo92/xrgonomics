@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSimDocument Version="20302">
+	<ControlSet name="Control Set">
+	<defaults>
+		<ControlLinear name="default">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+				<default_min>       0.02000000 </default_min>
+				<default_max>       1.00000000 </default_max>
+				<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+				<x_nodes/>
+				<min_nodes/>
+				<max_nodes/>
+				<kp>     100.00000000 </kp>
+				<kv>      20.00000000 </kv>
+		</ControlLinear>
+	</defaults>
+	<objects>
+		<ControlLinear name="r_z_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="sternoclavicular_r2_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>		
+		<ControlLinear name="sternoclavicular_r3_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>		
+		<ControlLinear name="unrotscap_r2_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="unrotscap_r3_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="acromioclavicular_r1_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="acromioclavicular_r2_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="acromioclavicular_r3_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="unrothum_r1_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="unrothum_r2_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="unrothum_r3_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="elv_angle_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="shoulder_elv_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="shoulder1_r2_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="shoulder_rot_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		
+		<ControlLinear name="elbow_flexion_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>	
+		<ControlLinear name="pro_sup_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>	
+		
+		<ControlLinear name="deviation_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="flexion_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="wrist_hand_r1_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>
+		<ControlLinear name="wrist_hand_r3_reserve.excitation">
+			<is_model_control> true </is_model_control>
+			<extrapolate> true </extrapolate>
+			<default_min>       0.02000000 </default_min>
+			<default_max>       1.00000000 </default_max>
+			<filter_on> false </filter_on>
+			<use_steps> true </use_steps>
+			<x_nodes/>
+			<min_nodes/>
+			<max_nodes/>
+			<kp>     100.00000000 </kp>
+			<kv>      20.00000000 </kv>
+		</ControlLinear>		
+	</objects>
+		<groups/>
+	</ControlSet>
+</OpenSimDocument>
