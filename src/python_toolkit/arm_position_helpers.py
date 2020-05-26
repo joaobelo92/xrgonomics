@@ -2,6 +2,8 @@ import numpy as np
 import math
 import linalg_helpers
 import exceptions
+import biomechanics
+import opensim as osim
 
 base_pos = np.array([[0, 0, 0]])
 
@@ -138,6 +140,8 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
     rotations = compute_valid_elbow_positions(end_effector, elbow, elbow_prime, rotation_step)
     # print(len(rotations))
 
+    model = osim.Model('../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim')
+
     for rotation in rotations:
         forearm_vector = end_effector - rotation
 
@@ -157,6 +161,10 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
 
         elbow_flexion = math.degrees(linalg_helpers.angle_between_vectors(end_effector - rotation, rotation))
 
+        _, markers = biomechanics.retrieve_dependent_coordinates(model, elv_angle, shoulder_elv, shoulder_rot,
+                                                                 elbow_flexion)
+        error = linalg_helpers.magnitude(np.array(markers['End.Effector']) - (np.array(end_effector) / 100))
+        print(error, rotation, elv_angle, shoulder_elv, shoulder_rot, elbow_flexion)
         arm_poses.append({'elbow_x': rotation[0], 'elbow_y': rotation[1], 'elbow_z': rotation[2],
                           'elv_angle': elv_angle, 'shoulder_elv': shoulder_elv,
                           'shoulder_rot': shoulder_rot, 'elbow_flexion': elbow_flexion})
@@ -164,4 +172,4 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
     return arm_poses
 
 
-# print(compute_anchor_arm_poses([30, 0, 40], 33, 48))
+print(compute_anchor_arm_poses([32.5, 1.5, 42.5], 33, 48))

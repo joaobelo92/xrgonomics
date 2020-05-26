@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bc32835-b2d3-4d34-bf73-0136fe7b9317" name="Default Changelist" comment="" />
+    <list default="true" id="1bc32835-b2d3-4d34-bf73-0136fe7b9317" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/joaobelo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/xrgonomics.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/arm_position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/arm_position.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/arm_position_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/arm_position_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/biomechanics.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/biomechanics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/pose_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/pose_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/poses.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scripts/PythonNetworking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scripts/PythonNetworking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scripts/UIEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scripts/UIEvents.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +35,132 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager" selected="Python.arm_position_helpers">
+    <configuration name="arm_position" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="xrgonomics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/python_toolkit" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/python_toolkit/arm_position.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="arm_position_helpers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="xrgonomics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/python_toolkit" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/python_toolkit/arm_position_helpers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="biomechanics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="xrgonomics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/python_toolkit" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/python_toolkit/biomechanics.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pose_database" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="xrgonomics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/python_toolkit" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/python_toolkit/pose_database.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="xrgonomics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/python_toolkit" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/python_toolkit/server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.arm_position_helpers" />
+        <item itemvalue="Python.server" />
+        <item itemvalue="Python.arm_position" />
+        <item itemvalue="Python.biomechanics" />
+        <item itemvalue="Python.pose_database" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -31,11 +172,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590135317985</updated>
-      <workItem from="1590135319299" duration="131000" />
+      <workItem from="1590135319299" duration="5567000" />
+      <workItem from="1590398154506" duration="3585000" />
+      <workItem from="1590416160670" duration="3954000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1018" y="485" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590153783575">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1018" y="485" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1590153783575" />
+    <state width="2518" height="409" key="GridCell.Tab.0.bottom" timestamp="1590476658170">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="409" key="GridCell.Tab.0.bottom/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1590476658170" />
+    <state width="2518" height="409" key="GridCell.Tab.0.center" timestamp="1590476658169">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="409" key="GridCell.Tab.0.center/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1590476658169" />
+    <state width="2518" height="409" key="GridCell.Tab.0.left" timestamp="1590476658169">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="409" key="GridCell.Tab.0.left/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1590476658169" />
+    <state width="2518" height="409" key="GridCell.Tab.0.right" timestamp="1590476658170">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="409" key="GridCell.Tab.0.right/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1590476658170" />
+    <state width="243" height="457" key="HiddenNamespacesPopup" timestamp="1590153373505">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="243" height="457" key="HiddenNamespacesPopup/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1590153373505" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/xrgonomics$arm_position.coverage" NAME="arm_position Coverage Results" MODIFIED="1590415352059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
+    <SUITE FILE_PATH="coverage/xrgonomics$pose_database.coverage" NAME="pose_database Coverage Results" MODIFIED="1590394008633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
+    <SUITE FILE_PATH="coverage/xrgonomics$server.coverage" NAME="server Coverage Results" MODIFIED="1590476559758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
+    <SUITE FILE_PATH="coverage/xrgonomics$biomechanics.coverage" NAME="biomechanics Coverage Results" MODIFIED="1590414577130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
+    <SUITE FILE_PATH="coverage/xrgonomics$arm_position_helpers.coverage" NAME="arm_position_helpers Coverage Results" MODIFIED="1590476658158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
   </component>
 </project>

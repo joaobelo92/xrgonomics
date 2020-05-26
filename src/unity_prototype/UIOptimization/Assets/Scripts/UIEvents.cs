@@ -34,36 +34,36 @@ public class UIEvents : MonoBehaviour
     public GameObject poses;
     public Material voxelMaterial;
 
-    private PythonNetworking pythonNetworking;
-    private RaycastHit hit;
-    private bool clientStopped;
-    private bool requestPending;
-    private bool clientBusy;
+    private PythonNetworking _pythonNetworking;
+    private RaycastHit _hit;
+    private bool _clientStopped;
+    private bool _requestPending;
+    private bool _clientBusy;
 
     public void Start()
     {
         xSlider.value = 0;
         ySlider.value = 0;
         zSlider.value = 0;
-        pythonNetworking = new PythonNetworking(false);
+        _pythonNetworking = new PythonNetworking(false);
         StartCoroutine(GetLimits());
     }
 
     public void Update()
     {
-        if (requestPending && !clientBusy)
+        if (_requestPending && !_clientBusy)
         {
-            requestPending = false;
-            clientBusy = true;
+            _requestPending = false;
+            _clientBusy = true;
             StartCoroutine(GetVoxels());
         }
         
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if  (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if  (Physics.Raycast(ray, out _hit, Mathf.Infinity))
             {
-                StartCoroutine(GetVoxelPoses(hit.transform.gameObject));
+                StartCoroutine(GetVoxelPoses(_hit.transform.gameObject));
             }
         }
     }
@@ -76,7 +76,7 @@ public class UIEvents : MonoBehaviour
         xSlider.enabled = xToggle.isOn;
         ySlider.enabled = yToggle.isOn;
         zSlider.enabled = zToggle.isOn;
-        requestPending = true;
+        _requestPending = true;
     }
     
     public void UpdateCameraSettings()
@@ -101,9 +101,9 @@ public class UIEvents : MonoBehaviour
 
     private IEnumerator GetLimits()
     {
-        pythonNetworking.PerformRequest("L", null);
-        yield return new WaitUntil(() => pythonNetworking.requestResult != null);
-        var limits = JsonConvert.DeserializeObject<Serialization.Limits>(pythonNetworking.requestResult);
+        _pythonNetworking.PerformRequest("L", null);
+        yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
+        var limits = JsonConvert.DeserializeObject<Serialization.Limits>(_pythonNetworking.requestResult);
         xSlider.minValue = limits.minX;
         xSlider.maxValue = limits.maxX;
         ySlider.minValue = limits.minY;
@@ -111,6 +111,7 @@ public class UIEvents : MonoBehaviour
         zSlider.minValue = limits.minZ;
         zSlider.maxValue = limits.maxZ;
         UpdateFilters();
+        _clientBusy = false;
     }
 
     private IEnumerator GetVoxels()
@@ -127,9 +128,9 @@ public class UIEvents : MonoBehaviour
             z = zToggle.isOn ? zSlider.value.ToString() : null
         };
         var poseRequestJson = JsonUtility.ToJson(poseRequest);
-        pythonNetworking.PerformRequest("C", poseRequestJson);
-        yield return new WaitUntil(() => pythonNetworking.requestResult != null);
-        var anchors = JsonConvert.DeserializeObject<Serialization.Anchor[]>(pythonNetworking.requestResult);
+        _pythonNetworking.PerformRequest("C", poseRequestJson);
+        yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
+        var anchors = JsonConvert.DeserializeObject<Serialization.Anchor[]>(_pythonNetworking.requestResult);
         foreach (var anchor in anchors)
         {
             var position = new Vector3(anchor.position[2], anchor.position[1],
@@ -138,7 +139,7 @@ public class UIEvents : MonoBehaviour
             Helpers.CreatePrimitiveGameObject(PrimitiveType.Cube, position, scale,
                 interactionSpace.transform, null, false, voxelMaterial);
         }
-        clientBusy = false;
+        _clientBusy = false;
     }
     
     private IEnumerator GetVoxelPoses(GameObject voxel)
@@ -161,16 +162,16 @@ public class UIEvents : MonoBehaviour
             z = pos.x
         };
         var poseRequestJson = JsonConvert.SerializeObject(poseRequest);
-        pythonNetworking.PerformRequest("P", poseRequestJson);
-        yield return new WaitUntil(() => pythonNetworking.requestResult != null);
-        var posesObj = JsonConvert.DeserializeObject<Serialization.Pose[]>(pythonNetworking.requestResult);
+        _pythonNetworking.PerformRequest("P", poseRequestJson);
+        yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
+        var posesObj = JsonConvert.DeserializeObject<Serialization.Pose[]>(_pythonNetworking.requestResult);
         
         foreach (var pose in posesObj)
         {
             var position = new Vector3(pose.elbow[2], pose.elbow[1],
                 pose.elbow[0]);
             
-            print(position.magnitude + " " + (pos - position).magnitude);
+            print(position.magnitude + " " + (pos - position).magnitude + " " + position);
             var scale = new Vector3(5f, 5f, 5f);
             Helpers.CreatePrimitiveGameObject(PrimitiveType.Sphere, position, scale, poses.transform);
         }
@@ -178,7 +179,7 @@ public class UIEvents : MonoBehaviour
     
     private void OnDestroy()
     {
-        pythonNetworking.StopClient();
+        _pythonNetworking.StopClient();
     }
 
 }

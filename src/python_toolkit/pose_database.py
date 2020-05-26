@@ -59,7 +59,7 @@ def insert_anchor(conn, anchor):
 
 def insert_arm_pose(conn, arm_pose):
     cursor = conn.cursor()
-    sql = '''INSERT INTO arm_poses(coordinate_id, elbow_x, elbow_y, elbow_z,
+    sql = '''INSERT INTO arm_poses(voxel_id, elbow_x, elbow_y, elbow_z,
                                    elv_angle, shoulder_elv, shoulder_rot, elbow_flexion)
              VALUES(?, ?, ?, ?, ?, ?, ?, ?)'''
     cursor.execute(sql, arm_pose)
@@ -124,7 +124,7 @@ def get_voxels_limits(conn):
 def get_poses_in_voxel(conn, voxel_id):
     cursor = conn.cursor()
     sql = '''SELECT * FROM arm_poses
-              WHERE coordinate_id = ?'''
+             WHERE voxel_id = ?'''
     cursor.execute(sql, (voxel_id,))
     return cursor
 
@@ -145,7 +145,17 @@ def drop_tables(conn):
     return cursor
 
 
+def get_voxels_with_pose_cursor(conn):
+    cursor = conn.cursor()
+    sql = '''SELECT voxels.id, COUNT(*), MIN(elv_angle)
+             FROM voxels LEFT OUTER JOIN arm_poses ON arm_poses.voxel_id = voxels.id 
+             GROUP BY voxels.id'''
+    cursor.execute(sql)
+    return cursor
+
+
 # c = create_connection("poses.db")
+# print(get_voxels_with_pose_cursor(c).fetchall())
 # print(get_voxels_limits(c))
 # print(count_poses(c))
 # create_tables(c)

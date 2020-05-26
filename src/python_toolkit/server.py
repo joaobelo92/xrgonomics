@@ -31,10 +31,10 @@ while True:
         print('Received request, time: {}'.format(time.time() - since))
 
         socket.send(b'Image data')
-    elif request[0].decode('utf-8') == 'A':
-        anchors = arm_position.get_all_voxels('poses.db')
-        anchors_json = {'anchors': anchors}
-        socket.send(json.dumps(anchors_json).encode('utf-8'))
+    # elif request[0].decode('utf-8') == 'A':
+    #     anchors = arm_position.get_all_voxels('poses.db')
+    #     anchors_json = {'anchors': anchors}
+    #     socket.send(json.dumps(anchors_json).encode('utf-8'))
     elif request[0].decode('utf-8') == 'C':
         req = json.loads(request[1])
         anchors = arm_position.get_voxels_constrained('poses.db', *req.values())

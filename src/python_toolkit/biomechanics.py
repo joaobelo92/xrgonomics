@@ -1,11 +1,9 @@
 import opensim as osim
 import math
 import xml.etree.ElementTree
-import file_io
 
 
-def retrieve_dependent_coordinates(model_path, elv_angle, shoulder_elv, shoulder_rot, elbow_flexion):
-    model = osim.Model(model_path)
+def retrieve_dependent_coordinates(model, elv_angle, shoulder_elv, shoulder_rot, elbow_flexion):
     initial_state = model.initSystem()
 
     coordinates = {}
@@ -20,21 +18,22 @@ def retrieve_dependent_coordinates(model_path, elv_angle, shoulder_elv, shoulder
     coordinates["shoulder_rot"].setValue(initial_state, math.radians(shoulder_rot), True)
     coordinates["elbow_flexion"].setValue(initial_state, math.radians(elbow_flexion), True)
 
-    values = []
+    coordinate_values = {}
     for name, coordinate in coordinates.items():
-        values.append(math.degrees(coordinate.getValue(initial_state)))
+        coordinate_values[name] = math.degrees(coordinate.getValue(initial_state))
 
-    body_set = {}
-    for body_part in model.getBodySet():
-        body_set[body_part.getName()] = body_part
-        print(body_part.getName(), body_part.getPositionInGround(initial_state))
+    # body_set = {}
+    # for body_part in model.getBodySet():
+    #     body_set[body_part.getName()] = body_part
+    #     print(body_part.getName(), body_part.getPositionInGround(initial_state))
 
     marker_set = {}
     for marker in model.getMarkerSet():
-        marker_set[marker.getName()] = marker
-        print(marker.getName(), marker.getLocationInGround(initial_state))
+        pos_vec = marker.getLocationInGround(initial_state)
+        marker_set[marker.getName()] = (pos_vec[0], pos_vec[1], pos_vec[2])
+        # print(marker.getName(), marker.getLocationInGround(initial_state))
 
-    return list(coordinates), values
+    return coordinate_values, marker_set
 
 
 def static_optimization(model_path):
@@ -46,9 +45,9 @@ def static_optimization(model_path):
     # print(model.updAnalysisSet())
 
 
-anchors = [[30, 120, -20, 50], [30, 20, 20, 100], [30, 5, 0, 70], [0, 0, 0, 0]]
-model_path = "../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim"
-rows = 20
+# anchors = [[30, 120, -20, 50], [30, 20, 20, 100], [30, 5, 0, 70], [0, 0, 0, 0]]
+# model_path = "../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim"
+# rows = 20
 
 # for idx, a in enumerate(anchors):
 #     coordinates, values = retrieve_dependent_coordinates(model_path, a[0], a[1], a[2], a[3])
@@ -64,8 +63,9 @@ rows = 20
 #     static_optimization(model_path)
 # coordinates, values = retrieve_dependent_coordinates("../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim",
 #                                                      15, 45, 35, 100)
-coordinates, values = retrieve_dependent_coordinates("../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim",
-                                                     0, 0, 0, 0)
+# coord, markers = retrieve_dependent_coordinates("../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim",
+#                                                      0, 90, 0, 0)
+# print(str(coord) + "\n" + str(markers))
 
 # file_io.generate_arm_static_mot("../../assets/hard.mot", list(coordinates), values, num_rows=50)
 # static_optimization("../assets/ThoracoscapularShoulderModel.osim", "", "")

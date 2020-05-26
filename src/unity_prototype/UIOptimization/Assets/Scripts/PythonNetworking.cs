@@ -20,9 +20,10 @@ public class PythonNetworking
         var clientThread = new Thread(NetMQClient);
         clientThread.Start();
 
-        if (!sendWebCamFeed) return;
-        var webCamUpload = new Thread(WebCamUpload);
-        webCamUpload.Start();
+        if (sendWebCamFeed) {
+            var webCamUpload = new Thread(WebCamUpload);
+            webCamUpload.Start();
+        }
     }
     
     

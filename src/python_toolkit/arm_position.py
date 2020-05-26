@@ -79,7 +79,8 @@ def get_all_voxels(db_name):
 
 def get_voxels_constrained(db_name, x, y, z):
     conn = pose_database.create_connection(db_name)
-    sql = '''SELECT * FROM voxels '''
+    sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, COUNT(*)
+             FROM voxels JOIN arm_poses ON voxels.id = arm_poses.voxel_id '''
     params = []
     if x is not "" or y is not "" or z is not "":
         sql += 'WHERE '
@@ -97,23 +98,26 @@ def get_voxels_constrained(db_name, x, y, z):
         z = float(z)
         if x is not "" or y is not "":
             sql += 'AND '
-        sql += 'min_z <= ? AND max_z > ?'
+        sql += 'min_z <= ? AND max_z > ? '
         params += [z, z]
 
-    anchors = pose_database.custom_query(conn, sql, params)
+    sql += "GROUP BY voxels.id"
+
+    voxels = pose_database.custom_query(conn, sql, params)
 
     result = []
-    for anchor in anchors:
+    for voxel in voxels:
         result.append({
-            'id': anchor[0],
-            'position': [anchor[7], anchor[8], anchor[9]],
+            'id': voxel[0],
+            'position': [voxel[1], voxel[2], voxel[3]],
+            'num_poses': voxel[4]
         })
     return result
 
 
 def get_voxel_poses(db_name, x, y, z):
     conn = pose_database.create_connection(db_name)
-    # print(x, y, z)
+    print(x, y, z)
     voxel_id = pose_database.get_voxel_point(conn, x, y, z)[0]
     poses = pose_database.get_poses_in_voxel(conn, voxel_id)
     result = []
@@ -151,6 +155,7 @@ def compute_all_arm_pos(db_name, arm_proper_length=33, forearm_hand_length=48):
             # print((voxel['id'], *pose.values()))
             pose_database.insert_arm_pose(conn, (voxel['id'], *pose.values()))
     conn.commit()
+
 
 # pose_database.drop_tables(pose_database.create_connection('poses.db'))
 # initialize_pose_db('poses.db')
