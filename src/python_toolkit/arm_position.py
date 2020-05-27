@@ -30,11 +30,11 @@ def initialize_pose_db(db_name, arm_proper_length=33, forearm_hand_length=48, sp
     # Acromion-Radiale length 31.14 12.26 50TH 34.05 13.41
     # Forearm - hand lenght 44.21 17.41 50TH 48.28 19.01
 
-    print('elbow: {}'.format(np.array([0.0360217, -0.305384, 0.17] - np.array([-0.0109379, 0.0239952, 0.17469]))))
-    print('end effector: {}'.format(np.array([0.143778, -0.752421, 0.205026] - np.array([-0.0109379, 0.0239952, 0.17469]))))
-
-    print('length proper: {}'.format(linalg.magnitude(np.array([0.0360217, -0.305384,0.17] - np.array([-0.0109379, 0.0239952, 0.17469])))))
-    print('length forearm: {}'.format(linalg.magnitude(np.array([0.143778, -0.752421, 0.205026] - np.array([0.0293081, -0.290748, 0.11592])))))
+    # print('elbow: {}'.format(np.array([0.0360217, -0.305384, 0.17] - np.array([-0.0109379, 0.0239952, 0.17469]))))
+    # print('end effector: {}'.format(np.array([0.143778, -0.752421, 0.205026] - np.array([-0.0109379, 0.0239952, 0.17469]))))
+    #
+    # print('length proper: {}'.format(linalg.magnitude(np.array([0.0360217, -0.305384,0.17] - np.array([-0.0109379, 0.0239952, 0.17469])))))
+    # print('length forearm: {}'.format(linalg.magnitude(np.array([0.143778, -0.752421, 0.205026] - np.array([0.0293081, -0.290748, 0.11592])))))
 
     arm_total_length = arm_proper_length + forearm_hand_length
     voxels = armpos.compute_interaction_space(spacing, [(-15, arm_total_length), (-arm_total_length, arm_total_length),
@@ -50,29 +50,14 @@ def initialize_pose_db(db_name, arm_proper_length=33, forearm_hand_length=48, sp
     conn.commit()
 
 
-def compute_all_arm_pos(db_name, arm_proper_length=33, forearm_hand_length=48):
-    conn = pose_database.create_connection(db_name)
-    anchors = pose_database.get_voxels_cursor(conn)
-    for anchor in anchors:
-        # get point in the anchor center
-        end_effector = (anchor[7], anchor[8], anchor[9])
-        poses = armpos.compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_length)
-        if poses is not None:
-            for pose in poses:
-                pose_database.insert_arm_pose(conn, (anchor[0], pose['elbow_x'], pose['elbow_y'], pose['elbow_z'],
-                                                     pose['elv_angle'], pose['shoulder_elv'], pose['shoulder_rot'],
-                                                     pose['elbow_flexion']))
-    conn.commit()
-
-
 def get_all_voxels(db_name):
     conn = pose_database.create_connection(db_name)
-    anchors = pose_database.get_voxels_cursor(conn)
+    anchors = pose_database.get_all_voxels(conn)
     result = []
     for anchor in anchors:
         result.append({
             'id': anchor[0],
-            'position': [anchor[7], anchor[8], anchor[9]],
+            'position': [anchor[1], anchor[2], anchor[3]],
         })
     return result
 
@@ -80,7 +65,7 @@ def get_all_voxels(db_name):
 def get_voxels_constrained(db_name, x, y, z):
     conn = pose_database.create_connection(db_name)
     sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, COUNT(*)
-             FROM voxels JOIN arm_poses ON voxels.id = arm_poses.voxel_id '''
+             FROM voxels LEFT OUTER JOIN arm_poses ON voxels.id = arm_poses.voxel_id '''
     params = []
     if x is not "" or y is not "" or z is not "":
         sql += 'WHERE '
@@ -147,21 +132,47 @@ def get_interaction_space_limits(db_name):
     return limits_dict
 
 
+# def compute_all_arm_pos(db_name, arm_proper_length=33, forearm_hand_length=48):
+#     conn = pose_database.create_connection(db_name)
+#     for voxel in get_all_voxels(db_name):
+#         poses = compute_arm_pos(voxel['position'], arm_proper_length, forearm_hand_length)
+#         for pose in poses:
+#             # print((voxel['id'], *pose.values()))
+#             pose_database.insert_arm_pose(conn, (voxel['id'], *pose.values()))
+#     conn.commit()
+
+
 def compute_all_arm_pos(db_name, arm_proper_length=33, forearm_hand_length=48):
     conn = pose_database.create_connection(db_name)
+    # voxel = get_voxels_constrained(db_name, 32.5, 1.5, 42.5)[0]
+    # poses = armpos.compute_anchor_arm_poses(voxel['position'], arm_proper_length, forearm_hand_length)
+    # if poses is not None:
+    #     for pose in poses:
+    #         # print(voxel['position'], pose['elbow_x'], pose['elbow_y'], pose['elbow_z'])
+    #         pose_database.insert_arm_pose(conn, (voxel['id'], pose['elbow_x'], pose['elbow_y'], pose['elbow_z'],
+    #                                              pose['elv_angle'], pose['shoulder_elv'], pose['shoulder_rot'],
+    #                                              pose['elbow_flexion']))
     for voxel in get_all_voxels(db_name):
-        poses = compute_arm_pos(voxel['position'], arm_proper_length, forearm_hand_length)
-        for pose in poses:
-            # print((voxel['id'], *pose.values()))
-            pose_database.insert_arm_pose(conn, (voxel['id'], *pose.values()))
+        # get point in the anchor center
+        poses = armpos.compute_anchor_arm_poses(voxel['position'], arm_proper_length, forearm_hand_length)
+        if poses is not None:
+            for pose in poses:
+                # print(voxel['position'], pose['elbow_x'], pose['elbow_y'], pose['elbow_z'])
+                pose_database.insert_arm_pose(conn, (voxel['id'], pose['elbow_x'], pose['elbow_y'], pose['elbow_z'],
+                                                     pose['elv_angle'], pose['shoulder_elv'], pose['shoulder_rot'],
+                                                     pose['elbow_flexion']))
+
     conn.commit()
 
 
-# pose_database.drop_tables(pose_database.create_connection('poses.db'))
-# initialize_pose_db('poses.db')
-# compute_all_arm_pos('poses.db')
+pose_database.drop_tables(pose_database.create_connection('poses.db'))
+initialize_pose_db('poses.db')
+compute_all_arm_pos('poses.db')
 
-# get_voxel_poses('poses.db', 20, 22, 5)
+r = get_voxel_poses('poses.db', 32.5, 1.5, 42.5)
+for p in r:
+    print(p)
+print(len(r), r)
 
 
 

@@ -40,6 +40,8 @@ public class UIEvents : MonoBehaviour
     private bool _requestPending;
     private bool _clientBusy;
 
+    public GameObject testCube;
+
     public void Start()
     {
         xSlider.value = 0;

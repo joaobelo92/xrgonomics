@@ -90,11 +90,11 @@ def get_voxel_point(conn, x, y, z):
     return cursor.fetchone()
 
 
-def get_voxels_cursor(conn):
+def get_all_voxels(conn):
     cursor = conn.cursor()
-    sql = '''SELECT * FROM voxels'''
+    sql = '''SELECT id, x, y, z FROM voxels'''
     cursor.execute(sql)
-    return cursor
+    return cursor.fetchall()
 
 
 def get_voxels_limits(conn):
@@ -140,9 +140,9 @@ def drop_tables(conn):
     cursor = conn.cursor()
     sql = '''DROP TABLE IF EXISTS voxels'''
     cursor.execute(sql)
-    sql = '''DROP TABLE IF EXISTS coordinates'''
+    sql = '''DROP TABLE IF EXISTS arm_poses'''
     cursor.execute(sql)
-    return cursor
+    conn.commit()
 
 
 def get_voxels_with_pose_cursor(conn):

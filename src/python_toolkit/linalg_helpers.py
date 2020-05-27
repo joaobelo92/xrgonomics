@@ -19,18 +19,33 @@ def angle_between_vectors(a, b):
     return math.acos(theta)
 
 
-def law_of_cosines_angle(a, b, c, radians=True):
+def law_of_cosines_angle(a, b, c, res='gamma', radians=True, acos=True):
     """
     a, b and c are the length/ratios of the sides, where c is the side opposite to the angle
     we want to retrieve
     """
-    alpha = (a ** 2 + b ** 2 - c ** 2) / (2 * a * b)
     if abs(a) > abs(b) + abs(c) or abs(b) > abs(a) + abs(c) or abs(c) > abs(a) + abs(b):
         raise exceptions.MathError('Impossible triangle: The sum of two sides must be larger than the third')
-    # if alpha < -1 or alpha > 1:
-    #     return None
-    angle = math.acos(alpha)
-    return angle if radians is True else math.degrees(angle)
+
+    # gamma = elbow flexion
+    # alpha = end-effector - elbow angle (not useful)
+    # beta = shoulder elevation + rotation
+    angles = {
+        'gamma': (a ** 2 + b ** 2 - c ** 2) / (2 * a * b),
+        'alpha': (b ** 2 + c ** 2 - a ** 2) / (2 * b * c),
+        'beta': (a ** 2 + c ** 2 - b ** 2) / (2 * a * c)
+    }
+
+    if not acos:
+        return angles[res]
+
+    angles[res] = math.acos(angles[res])
+
+    # Only one value is physically realizable because of joint limits
+    if angles[res] > math.pi:
+        angles[res] -= math.pi
+
+    return angles[res] if radians is True else math.degrees(angles[res])
 
 
 def euler_rodrigues_rotation(axis, angle, vector=None):
