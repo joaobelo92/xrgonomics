@@ -5,7 +5,7 @@
     <explicitIncludes>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.ide.rider@1.1.4</Path>
-      <Path>Library/PackageCache/com.unity.ide.vscode@1.2.0</Path>
+      <Path>Library/PackageCache/com.unity.ide.vscode@1.2.1</Path>
       <Path>Library/PackageCache/com.unity.mathematics@1.1.0</Path>
       <Path>Library/PackageCache/com.unity.test-framework@1.1.14</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>

@@ -6,10 +6,17 @@ public static class Serialization
 {
         
     [Serializable]
-    public class Anchor
+    public class Voxel
     {
         public int id;
         public float[] position;
+        [JsonProperty(PropertyName = "num_poses")]
+        public int? numPoses;
+        [JsonProperty(PropertyName = "pose_id")]
+        public int? poseId;
+        [JsonProperty(PropertyName = "muscle_activation")]
+        public float? muscleActivation;
+        public float? reserve;
 
         public override string ToString()
         {
@@ -44,11 +51,12 @@ public static class Serialization
     }
     
     [Serializable]
-    public class AnchorRequest
+    public class VoxelRequest
     {
         public string x;
         public string y;
         public string z;
+        public string metric;
     }
     
     [Serializable]

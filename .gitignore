@@ -199,3 +199,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /src/unity_prototype//UIOptimization/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /src/unity_prototype//UIOptimization/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+/experiments/

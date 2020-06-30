@@ -36,15 +36,15 @@ def retrieve_dependent_coordinates(model, elv_angle, shoulder_elv, shoulder_rot,
     return coordinate_values, marker_set
 
 
-def static_optimization(model_path):
-    # TODO: update settings file, generate motion file, read output file, insert results in db
+def run_static_optimization(so_file):
     # model = osim.Model(model_path)
-    tool = osim.AnalyzeTool("/Users/joaobelo/Code/muscle-activation-optimization/assets/so.xml")
+    tool = osim.AnalyzeTool(so_file)
     # # model t and r coordinates have to be locked
     tool.run()
     # print(model.updAnalysisSet())
 
 
+# run_static_optimization("/Users/joaobelo/Code/xrgonomics/experiments/pose_1/pose_1_so.xml")
 # anchors = [[30, 120, -20, 50], [30, 20, 20, 100], [30, 5, 0, 70], [0, 0, 0, 0]]
 # model_path = "../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim"
 # rows = 20

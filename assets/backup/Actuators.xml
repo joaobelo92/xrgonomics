@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSimDocument Version="20302">
+	<ForceSet name="MoBL">
+	<objects>
+			<CoordinateActuator name="r_x">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+                <coordinate> r_x </coordinate>
+				<optimal_force>       1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="r_y">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+                <coordinate> r_y </coordinate>
+				<optimal_force>       1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="r_z">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+                <coordinate> r_z </coordinate>
+				<optimal_force>       1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="t_x">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+                <coordinate> t_x </coordinate>
+				<optimal_force>       1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="t_y">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+                <coordinate> t_y </coordinate>
+				<optimal_force>       1.00000000 </optimal_force>
+			</CoordinateActuator>
+			<CoordinateActuator name="t_z">
+				<isDisabled> false </isDisabled>
+				<!--Minimum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<min_control> -infinity </min_control>
+				<!--Maximum allowed value for control signal. Used primarily when solving
+				    for control values-->
+				<max_control> infinity </max_control>
+                <coordinate> t_z </coordinate>
+				<optimal_force>       1.00000000 </optimal_force>
+			</CoordinateActuator>
+	</objects>
+		<groups/>
+	</ForceSet>
+</OpenSimDocument>
+

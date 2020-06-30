@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,11 +21,16 @@ public class UIEvents : MonoBehaviour
     public Text yValueText;
     public Text zValueText;
     
+    public Dropdown metricDropdown;
+    public Slider voxelSizeSlider;
+    
     public Button interactionModeButton;
     
     public Slider cameraZoomSlider;
+    public Slider cameraPivotPitchSlider;
     public Slider cameraPivotYawSlider;
     public Text cameraPivotYawText;
+    public Text cameraPivotPitchText;
 
     public Camera mainCamera;
     public GameObject cameraPivot;
@@ -32,7 +38,9 @@ public class UIEvents : MonoBehaviour
     
     public GameObject interactionSpace;
     public GameObject poses;
-    public Material voxelMaterial;
+    public Shader voxelShader;
+    // public Material voxelMaterial;
+    private int _spacing;
 
     private PythonNetworking _pythonNetworking;
     private RaycastHit _hit;
@@ -40,14 +48,32 @@ public class UIEvents : MonoBehaviour
     private bool _requestPending;
     private bool _clientBusy;
 
+    private int _prevXValue = 0;
+    private int _prevYValue = 0;
+    private int _prevZValue = 0;
+
     public GameObject testCube;
+
+    private enum DiscomfortMetric
+    {
+        MuscleActivation,
+        ConsumedEndurance,
+        RULA
+    }
+    
+    private DiscomfortMetric _metric;
 
     public void Start()
     {
         xSlider.value = 0;
         ySlider.value = 0;
         zSlider.value = 0;
+        xValueText.text = "0";
+        yValueText.text = "0";
+        zValueText.text = "0";
         _pythonNetworking = new PythonNetworking(false);
+        _metric = DiscomfortMetric.MuscleActivation;
+        _spacing = 5;
         StartCoroutine(GetLimits());
     }
 
@@ -70,23 +96,48 @@ public class UIEvents : MonoBehaviour
         }
     }
 
-    public void UpdateFilters()
+    public void UpdateFilters(bool forceUpdate)
     {
+        // TODO: improve this
+        var x = xSlider.value;
+        var y = ySlider.value;
+        var z = zSlider.value;
+        // TODO: get value dynamically
+        var offset = 5;
+        if (forceUpdate || 
+            _prevXValue != (int) ((x + offset) / _spacing) || _prevXValue * x < 0 ||
+            _prevYValue != (int) ((y + offset) / _spacing) || _prevYValue * y < 0 ||
+            _prevZValue != (int) ((z + offset) / _spacing) || _prevZValue * z < 0)
+        {
+            _requestPending = true;
+        }
         xValueText.text = xSlider.value.ToString("n2");
         yValueText.text = ySlider.value.ToString("n2");
         zValueText.text = zSlider.value.ToString("n2");
         xSlider.enabled = xToggle.isOn;
         ySlider.enabled = yToggle.isOn;
         zSlider.enabled = zToggle.isOn;
-        _requestPending = true;
+        _prevXValue = (int) ((x + offset) / _spacing);
+        _prevYValue = (int) ((y + offset) / _spacing);
+        _prevZValue = (int) ((z + offset) / _spacing);
+    }
+
+    public void UpdateMetric()
+    {
+        _metric = (DiscomfortMetric) metricDropdown.value;
+        _spacing = (int) voxelSizeSlider.value;
+        UpdateFilters(true);
     }
     
     public void UpdateCameraSettings()
     {
         var cameraPivotYaw = cameraPivotYawSlider.value;
+        var cameraPivotPitch = cameraPivotPitchSlider.value;
         cameraPivotYawText.text = cameraPivotYaw.ToString();
-        cameraPivot.transform.eulerAngles = new Vector3(0, cameraPivotYaw, 0);
+        cameraPivotPitchText.text = cameraPivotPitch.ToString();
+        cameraPivot.transform.eulerAngles = new Vector3(cameraPivotPitch, cameraPivotYaw, 0);
         mainCamera.transform.localPosition = new Vector3(0, 0, cameraZoomSlider.value);
+        
     }
 
     public void ShowAvatar()
@@ -112,7 +163,7 @@ public class UIEvents : MonoBehaviour
         ySlider.maxValue = limits.maxY;
         zSlider.minValue = limits.minZ;
         zSlider.maxValue = limits.maxZ;
-        UpdateFilters();
+        UpdateFilters(true);
         _clientBusy = false;
     }
 
@@ -123,23 +174,47 @@ public class UIEvents : MonoBehaviour
             Destroy(child.gameObject);
         }
         
-        var poseRequest = new Serialization.AnchorRequest
+        var metricString = Regex.Replace(
+            _metric.ToString(),
+            "((?<!^)[A-Z0-9])",
+            m => "_" + m.ToString().ToLower(), 
+            RegexOptions.None);
+        metricString = metricString.ToLower(); 
+        
+        var poseRequest = new Serialization.VoxelRequest()
         {
             x = xToggle.isOn ? xSlider.value.ToString() : null,
             y = yToggle.isOn ? ySlider.value.ToString() : null,
-            z = zToggle.isOn ? zSlider.value.ToString() : null
+            z = zToggle.isOn ? zSlider.value.ToString() : null,
+            metric = metricString
         };
         var poseRequestJson = JsonUtility.ToJson(poseRequest);
         _pythonNetworking.PerformRequest("C", poseRequestJson);
         yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
-        var anchors = JsonConvert.DeserializeObject<Serialization.Anchor[]>(_pythonNetworking.requestResult);
-        foreach (var anchor in anchors)
+        var voxels = JsonConvert.DeserializeObject<Serialization.Voxel[]>(_pythonNetworking.requestResult);
+        foreach (var voxel in voxels)
         {
-            var position = new Vector3(anchor.position[2], anchor.position[1],
-                anchor.position[0]);
-            var scale = new Vector3(5f, 5f, 5f);
+            var position = new Vector3(voxel.position[2], voxel.position[1],
+                voxel.position[0]);
+            var scale = new Vector3(_spacing, _spacing, _spacing);
+            float discomfort;
+            switch (_metric)
+            {
+                case DiscomfortMetric.MuscleActivation:
+                    discomfort = (voxel.muscleActivation ?? 1) * 25 + (voxel.reserve ?? 1) / 100;
+                    break;
+                case DiscomfortMetric.ConsumedEndurance:
+                    // max value from DB
+                    // TODO: get this values dynamically
+                    discomfort = (voxel.muscleActivation ?? 10) / 10;
+                    break;
+                default:
+                    discomfort = 1;
+                    break;
+            }
+            var color = Color.Lerp(Color.green, Color.red, discomfort);
             Helpers.CreatePrimitiveGameObject(PrimitiveType.Cube, position, scale,
-                interactionSpace.transform, null, false, voxelMaterial);
+                interactionSpace.transform, null, false, voxelShader, color);
         }
         _clientBusy = false;
     }
@@ -172,8 +247,6 @@ public class UIEvents : MonoBehaviour
         {
             var position = new Vector3(pose.elbow[2], pose.elbow[1],
                 pose.elbow[0]);
-            
-            print(position.magnitude + " " + (pos - position).magnitude + " " + position);
             var scale = new Vector3(5f, 5f, 5f);
             Helpers.CreatePrimitiveGameObject(PrimitiveType.Sphere, position, scale, poses.transform);
         }

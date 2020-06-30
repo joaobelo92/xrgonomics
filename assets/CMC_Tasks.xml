@@ -50,7 +50,7 @@
 	<objects>
 		<CMC_Joint name="r_z">
 				<!--Flag (true or false) indicating whether or not a task is on.-->
-				<on> true </on>
+				<on> false </on>
 				<!--Weight with which a task is tracked relative to other tasks. To track
 				    a task more tightly, make the weight larger.-->
 				<weight>       1.00000000       1.00000000       1.00000000 </weight>
@@ -755,7 +755,7 @@
 		</CMC_Joint>		
 		<CMC_Joint name="pro_sup">
 				<!--Flag (true or false) indicating whether or not a task is on.-->
-				<on> true </on>
+				<on> false </on>
 				<!--Weight with which a task is tracked relative to other tasks. To track
 				    a task more tightly, make the weight larger.-->
 				<weight>       1.00000000       1.00000000       1.00000000 </weight>
@@ -800,7 +800,7 @@
 			
 		<CMC_Joint name="deviation">
 				<!--Flag (true or false) indicating whether or not a task is on.-->
-				<on> true </on>
+				<on> false </on>
 				<!--Weight with which a task is tracked relative to other tasks. To track
 				    a task more tightly, make the weight larger.-->
 				<weight>       1.00000000       1.00000000       1.00000000 </weight>
@@ -888,7 +888,7 @@
 		</CMC_Joint>		
 		<CMC_Joint name="wrist_hand_r1">
 				<!--Flag (true or false) indicating whether or not a task is on.-->
-				<on> true </on>
+				<on> false </on>
 				<!--Weight with which a task is tracked relative to other tasks. To track
 				    a task more tightly, make the weight larger.-->
 				<weight>       1.00000000       1.00000000       1.00000000 </weight>
@@ -932,7 +932,7 @@
 		</CMC_Joint>		
 		<CMC_Joint name="wrist_hand_r3">
 				<!--Flag (true or false) indicating whether or not a task is on.-->
-				<on> true </on>
+				<on> false </on>
 				<!--Weight with which a task is tracked relative to other tasks. To track
 				    a task more tightly, make the weight larger.-->
 				<weight>       1.00000000       1.00000000       1.00000000 </weight>

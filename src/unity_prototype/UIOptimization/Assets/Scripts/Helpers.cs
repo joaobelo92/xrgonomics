@@ -6,7 +6,8 @@ using UnityEngine;
 public static class Helpers
 {
     public static GameObject CreatePrimitiveGameObject(PrimitiveType type, Vector3 position, Vector3 scale, 
-        Transform parent = null, string name = null, bool defaultMaterial = true, Material material = null)
+        Transform parent = null, string name = null, bool defaultMaterial = true, Shader shader = null,
+        Color? color = null)
     {
         var obj = GameObject.CreatePrimitive(type);
         obj.transform.position = position;
@@ -19,7 +20,9 @@ public static class Helpers
 
         if (!defaultMaterial)
         {
-            obj.GetComponent<Renderer>().material = material;
+            // TODO: create array with all voxels on start
+            var rend = obj.GetComponent<Renderer>();
+            rend.material = new Material(shader) {color = color ?? Color.white};
         }
         return obj;
     }

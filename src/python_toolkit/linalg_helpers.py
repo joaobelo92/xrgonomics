@@ -3,6 +3,55 @@ import math
 import exceptions
 
 
+class HomogeneousCoordinates:
+    def __init__(self, position, rotation=(0, 0, 0)):
+        rotation = rotation_matrix(*rotation)
+        homogeneous = np.zeros((4, 4))
+        homogeneous[:-1, :-1] = rotation
+        homogeneous[:-1, 3] = position.T
+        homogeneous[3, :] = [0, 0, 0, 1]
+        self.matrix = homogeneous
+
+    def set_rotation(self, x, y, z):
+        self.matrix[:-1, :-1] = rotation_matrix(x, y, z)
+
+    def get_pos(self):
+        return self.matrix[:-1, 3]
+
+
+def rotation_matrix(x, y, z):
+    if x is None:
+        rotation_x = np.identity(3)
+    else:
+        # x = np.deg2rad(x)
+        rotation_x = np.array([[1, 0, 0],
+                               [0, np.cos(x), -np.sin(x)],
+                               [0, np.sin(x), np.cos(x)]])
+
+    if y is None:
+        rotation_y = np.identity(3)
+    else:
+        # y = np.deg2rad(y)
+        rotation_y = np.array([[np.cos(y), 0, np.sin(y)],
+                               [0, 1, 0],
+                               [-np.sin(y), 0, np.cos(y)]])
+
+    if z is None:
+        rotation_z = np.identity(3)
+    else:
+        # z = np.deg2rad(z)
+        rotation_z = np.array([[np.cos(z), -np.sin(z), 0],
+                               [np.sin(z), np.cos(z), 0],
+                               [0, 0, 1]])
+
+    rotation = rotation_x @ rotation_y @ rotation_z
+    #         rotation_matrix = rotation_y @ rotation_x @ rotation_z
+    homogeneous = np.zeros((4, 4))
+    homogeneous[:-1, :-1] = rotation
+    homogeneous[:-1, 3] = [0, 0, 0]
+    homogeneous[3, :] = [0, 0, 0, 1]
+    return homogeneous
+
 def magnitude(v):
     return np.linalg.norm(v)
 
@@ -48,11 +97,11 @@ def law_of_cosines_angle(a, b, c, res='gamma', radians=True, acos=True):
     return angles[res] if radians is True else math.degrees(angles[res])
 
 
-def euler_rodrigues_rotation(axis, angle, vector=None):
+def euler_rodrigues_rotation(axis, theta, vector=None):
     axis = np.array(axis)
     if vector is not None:
         vector = np.array(vector)
-    theta = math.radians(angle)
+    # theta = math.radians(angle)
 
     # axis must be a unit vector
     axis = axis / math.sqrt(np.dot(axis, axis))
