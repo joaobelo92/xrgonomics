@@ -48,6 +48,8 @@ def create_tables(conn):
                   consumed_endurance REAL,
                   rula INTEGER,
                   borg10 INTEGER,
+                  muscle_activation_reserve REAL,
+                  weighted_metrics REAL,
                   FOREIGN KEY (voxel_id) REFERENCES voxels (id))''')
 
 
@@ -86,6 +88,15 @@ def set_pose_consumed_endurance(conn, pose_id, consumed_endurance):
              SET consumed_endurance = ?
              WHERE arm_pose_id = ?'''
     cursor.execute(sql, (consumed_endurance, pose_id))
+    return cursor.lastrowid
+
+
+def set_pose_rula(conn, pose_id, rula):
+    cursor = conn.cursor()
+    sql = '''UPDATE arm_poses
+             SET rula = ?
+             WHERE arm_pose_id = ?'''
+    cursor.execute(sql, (rula, pose_id))
     return cursor.lastrowid
 
 
@@ -135,9 +146,27 @@ def get_all_poses(conn):
     return cursor.fetchall()
 
 
+def get_all_poses_muscle_activation(conn):
+    cursor = conn.cursor()
+    sql = '''SELECT arm_pose_id, muscle_activation, reserve 
+             FROM arm_poses 
+             WHERE muscle_activation IS NOT NULL AND reserve IS NOT NULL'''
+    cursor.execute(sql)
+    return cursor.fetchall()
+
+
+def get_all_poses_all_metrics(conn):
+    cursor = conn.cursor()
+    sql = '''SELECT arm_pose_id, consumed_endurance, rula, muscle_activation_reserve
+             FROM arm_poses'''
+    cursor.execute(sql)
+    return cursor.fetchall()
+
+
 def get_all_poses_voxels(conn):
     cursor = conn.cursor()
-    sql = '''SELECT arm_poses.arm_pose_id, voxels.x, voxels.y, voxels.z, arm_poses.elbow_x, arm_poses.elbow_y, arm_poses.elbow_z
+    sql = '''SELECT arm_poses.arm_pose_id, voxels.x, voxels.y, voxels.z, arm_poses.elbow_x, arm_poses.elbow_y, 
+             arm_poses.elbow_z, arm_poses.elv_angle, arm_poses.shoulder_elv, arm_poses.elbow_flexion
              FROM arm_poses INNER JOIN voxels ON arm_poses.voxel_id = voxels.id
              '''
     cursor.execute(sql)
@@ -218,7 +247,28 @@ def get_max_ca(conn):
     cursor.execute(sql)
     return cursor.fetchone()
 
-# c = create_connection("poses.db")
+
+def get_min_max_rula(conn):
+    cursor = conn.cursor()
+    sql = '''SELECT MIN(rula), MAX(rula)
+             FROM arm_poses'''
+    cursor.execute(sql)
+    return cursor.fetchone()
+
+# max_activation = 0.23175466239999998
+# max_reserve = 1135.5161096400002
+# voxels_new[:, 6] /= max_activation
+# voxels_new[:, 7] /= max_reserve
+# # only for visualization purposes multiply muscle activation
+# voxels_new[:, 8] = voxels_new[:, 6] * 7.5 + voxels_new[:, 7] * 2.5
+# voxels_sorted = voxels_new[voxels_new[:, 8].argsort()]
+
+#
+
+# sql = '''SELECT id FROM voxels WHERE id MATCH circle(0, 0, 30.0)'''
+# cursor.execute(sql)
+# print(cursor.fetchone())
+# print(get_min_max_rula(c))
 # print(get_max_ca(c))
 # print(get_voxels_with_pose_cursor(c).fetchall())
 # print(get_voxels_with_pose_cursor(c).fetchall())

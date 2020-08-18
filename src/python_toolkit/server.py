@@ -36,9 +36,12 @@ while True:
     #     anchors_json = {'anchors': anchors}
     #     socket.send(json.dumps(anchors_json).encode('utf-8'))
     elif request[0].decode('utf-8') == 'C':
+        since = time.time()
         req = json.loads(request[1])
         anchors = arm_position.get_voxels_constrained('poses.db', *req.values())
         socket.send(json.dumps(anchors).encode('utf-8'))
+        duration = time.time() - since
+        print(duration)
     elif request[0].decode('utf-8') == 'P':
         req = json.loads(request[1])
         poses = arm_position.get_voxel_poses('poses.db', *req.values())
@@ -46,5 +49,10 @@ while True:
     elif request[0].decode('utf-8') == 'L':
         limits = arm_position.get_interaction_space_limits('poses.db')
         socket.send(json.dumps(limits).encode('utf-8'))
+    elif request[0].decode('utf-8') == 'O':
+        req = json.loads(request[1])
+        # print(req)
+        voxels = arm_position.optimal_position_in_polygon('poses.db', req['polygon'])
+        socket.send(json.dumps(voxels).encode('utf-8'))
     else:
         socket.send(b'Error')

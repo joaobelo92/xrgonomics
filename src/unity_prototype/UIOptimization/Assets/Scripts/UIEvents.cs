@@ -17,9 +17,13 @@ public class UIEvents : MonoBehaviour
     public Toggle xToggle;
     public Toggle yToggle;
     public Toggle zToggle;
+    public Dropdown xConstraintDropdown;
+    public Dropdown yConstraintDropdown;
+    public Dropdown zConstraintDropdown;
     public Text xValueText;
     public Text yValueText;
     public Text zValueText;
+    public Text voxelPosition;
     
     public Dropdown metricDropdown;
     public Slider voxelSizeSlider;
@@ -58,10 +62,14 @@ public class UIEvents : MonoBehaviour
     {
         MuscleActivation,
         ConsumedEndurance,
-        RULA
+        Rula,
+        WeightedMetrics
     }
     
     private DiscomfortMetric _metric;
+    private string _xConstraint;
+    private string _yConstraint;
+    private string _zConstraint;
 
     public void Start()
     {
@@ -73,8 +81,12 @@ public class UIEvents : MonoBehaviour
         zValueText.text = "0";
         _pythonNetworking = new PythonNetworking(false);
         _metric = DiscomfortMetric.MuscleActivation;
+        _xConstraint = "=";
+        _yConstraint = "=";
+        _zConstraint = "=";
         _spacing = 5;
         StartCoroutine(GetLimits());
+        interactionModeButton.gameObject.SetActive(true);
     }
 
     public void Update()
@@ -85,15 +97,23 @@ public class UIEvents : MonoBehaviour
             _clientBusy = true;
             StartCoroutine(GetVoxels());
         }
-        
+        var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        var hitVoxel = Physics.Raycast(ray, out _hit, Mathf.Infinity);
         if (Input.GetMouseButtonDown(0))
         {
-            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if  (Physics.Raycast(ray, out _hit, Mathf.Infinity))
+            if  (hitVoxel)
             {
                 StartCoroutine(GetVoxelPoses(_hit.transform.gameObject));
             }
+        } else if (hitVoxel)
+        {
+            voxelPosition.text = _hit.transform.position.ToString();
         }
+        else
+        {
+            voxelPosition.text = "";
+        }
+        
     }
 
     public void UpdateFilters(bool forceUpdate)
@@ -120,6 +140,9 @@ public class UIEvents : MonoBehaviour
         _prevXValue = (int) ((x + offset) / _spacing);
         _prevYValue = (int) ((y + offset) / _spacing);
         _prevZValue = (int) ((z + offset) / _spacing);
+        _xConstraint = xConstraintDropdown.options[xConstraintDropdown.value].text;
+        _yConstraint = yConstraintDropdown.options[yConstraintDropdown.value].text;
+        _zConstraint = zConstraintDropdown.options[zConstraintDropdown.value].text;
     }
 
     public void UpdateMetric()
@@ -145,11 +168,25 @@ public class UIEvents : MonoBehaviour
         avatar.SetActive(!avatar.activeSelf);
     }
 
+    public void GetOptimal()
+    {
+        foreach (Transform child in interactionSpace.transform)
+        {
+            if (child.gameObject.name != "0")
+                child.gameObject.SetActive(false);
+        }
+        interactionModeButton.gameObject.SetActive(true);
+    }
+
     public void ToggleInteractionMode()
     {
-        interactionSpace.SetActive(!interactionSpace.activeSelf);
-        poses.SetActive(!interactionSpace.activeSelf);
-        interactionModeButton.gameObject.SetActive(!interactionSpace.activeSelf);
+        interactionSpace.SetActive(true);
+        poses.SetActive(false);
+        interactionModeButton.gameObject.SetActive(false);
+        foreach (Transform child in interactionSpace.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     private IEnumerator GetLimits()
@@ -186,35 +223,25 @@ public class UIEvents : MonoBehaviour
             x = xToggle.isOn ? xSlider.value.ToString() : null,
             y = yToggle.isOn ? ySlider.value.ToString() : null,
             z = zToggle.isOn ? zSlider.value.ToString() : null,
+            xConstraint = _xConstraint,
+            yConstraint = _yConstraint,
+            zConstraint = _zConstraint,
             metric = metricString
         };
         var poseRequestJson = JsonUtility.ToJson(poseRequest);
         _pythonNetworking.PerformRequest("C", poseRequestJson);
         yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
         var voxels = JsonConvert.DeserializeObject<Serialization.Voxel[]>(_pythonNetworking.requestResult);
-        foreach (var voxel in voxels)
+        for (var i = 0; i < voxels.Length; i++)
         {
-            var position = new Vector3(voxel.position[2], voxel.position[1],
-                voxel.position[0]);
+            var position = new Vector3(voxels[i].position[2], voxels[i].position[1],
+                voxels[i].position[0]);
             var scale = new Vector3(_spacing, _spacing, _spacing);
-            float discomfort;
-            switch (_metric)
-            {
-                case DiscomfortMetric.MuscleActivation:
-                    discomfort = (voxel.muscleActivation ?? 1) * 25 + (voxel.reserve ?? 1) / 100;
-                    break;
-                case DiscomfortMetric.ConsumedEndurance:
-                    // max value from DB
-                    // TODO: get this values dynamically
-                    discomfort = (voxel.muscleActivation ?? 10) / 10;
-                    break;
-                default:
-                    discomfort = 1;
-                    break;
-            }
-            var color = Color.Lerp(Color.green, Color.red, discomfort);
+            var comfort = voxels[i].comfort ?? 1;
+            
+            var color = Color.Lerp(Color.green, Color.red, comfort);
             Helpers.CreatePrimitiveGameObject(PrimitiveType.Cube, position, scale,
-                interactionSpace.transform, null, false, voxelShader, color);
+                interactionSpace.transform, i.ToString(), false, voxelShader, color);
         }
         _clientBusy = false;
     }
@@ -225,8 +252,10 @@ public class UIEvents : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        
-        ToggleInteractionMode();
+
+        interactionSpace.SetActive(false);
+        poses.SetActive(true);
+        interactionModeButton.gameObject.SetActive(true);
         // Clone voxel into poses GameObject
         Instantiate(voxel, poses.transform);
 

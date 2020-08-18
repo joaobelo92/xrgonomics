@@ -14,9 +14,7 @@ public static class Serialization
         public int? numPoses;
         [JsonProperty(PropertyName = "pose_id")]
         public int? poseId;
-        [JsonProperty(PropertyName = "muscle_activation")]
-        public float? muscleActivation;
-        public float? reserve;
+        public float? comfort;
 
         public override string ToString()
         {
@@ -56,7 +54,19 @@ public static class Serialization
         public string x;
         public string y;
         public string z;
+        [JsonProperty(PropertyName = "x_constraint")]
+        public string xConstraint;
+        [JsonProperty(PropertyName = "y_constraint")]
+        public string yConstraint;
+        [JsonProperty(PropertyName = "z_constraint")]
+        public string zConstraint;
         public string metric;
+    }
+    
+    [Serializable]
+    public class OptimalPosRequest
+    {
+        public float[] polygon;
     }
     
     [Serializable]

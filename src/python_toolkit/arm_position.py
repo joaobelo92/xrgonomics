@@ -8,6 +8,7 @@ import os
 import file_io
 import xml.etree.ElementTree
 import math
+from scipy.spatial import ConvexHull
 
 
 def initialize_pose_db(db_name, arm_proper_length=33, forearm_hand_length=46, spacing=10):
@@ -68,10 +69,17 @@ def get_all_voxels(db_name):
     return result
 
 
-def get_voxels_constrained(db_name, x, y, z, metric):
+def get_voxels_constrained(db_name, x, y, z, x_constraint, y_constraint, z_constraint, metric):
     conn = pose_database.create_connection(db_name)
-    sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, COUNT(*), arm_poses.arm_pose_id, MIN({}), arm_poses.reserve
-             FROM voxels LEFT OUTER JOIN arm_poses ON arm_poses.voxel_id = voxels.id '''.format(metric)
+    print(metric)
+    # metric = 'muscle_activation_reserve'
+    if metric is 'muscle_activation':
+        query = metric + ', MIN(arm_poses.muscle_activation_reserve)'
+    else:
+        query = 'MIN(' + metric + '), arm_poses.reserve'
+
+    sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, COUNT(*), arm_poses.arm_pose_id, {}
+             FROM voxels INNER JOIN arm_poses ON arm_poses.voxel_id = voxels.id '''.format(query)
     # sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, COUNT(*)
     #          FROM voxels LEFT OUTER JOIN arm_poses ON voxels.id = arm_poses.voxel_id '''
     params = []
@@ -79,41 +87,164 @@ def get_voxels_constrained(db_name, x, y, z, metric):
         sql += 'WHERE '
     if x is not "":
         x = float(x)
-        sql += 'min_x <= ? AND max_x > ? '
-        params += [x, x]
+        if x_constraint is '=':
+            sql += 'min_x <= ? AND max_x > ? '
+            params += [x, x]
+        elif x_constraint is '<=':
+            sql += 'max_x <= ? '
+            params += [x]
+        else:
+            sql += 'min_x >= ? '
+            params += [x]
     if y is not "":
         y = float(y)
         if x is not "":
             sql += 'AND '
-        sql += 'min_y <= ? AND max_y > ? '
-        params += [y, y]
+        if y_constraint is '=':
+            sql += 'min_y <= ? AND max_y > ? '
+            params += [y, y]
+        elif y_constraint is '<=':
+            sql += 'max_y <= ? '
+            params += [y]
+        else:
+            sql += 'min_y >= ? '
+            params += [y]
     if z is not "":
         z = float(z)
         if x is not "" or y is not "":
             sql += 'AND '
-        sql += 'min_z <= ? AND max_z > ? '
-        params += [z, z]
+        if z_constraint is '=':
+            sql += 'min_z <= ? AND max_z > ? '
+            params += [z, z]
+        elif z_constraint is '<=':
+            sql += 'max_z <= ? '
+            params += [z]
+        else:
+            sql += 'min_z >= ? '
+            params += [z]
 
-    sql += "GROUP BY voxels.id"
+    sql += '''AND {} IS NOT NULL {}
+              GROUP BY voxels.id'''.format(metric, 'AND reserve IS NOT NULL' if metric is 'muscle_activation' else '')
 
-    voxels = pose_database.custom_query(conn, sql, params)
+    # print(sql)
+    cursor = pose_database.custom_query(conn, sql, params)
+    voxels = cursor.fetchall()
 
     result = []
-    for voxel in voxels:
-        result.append({
-            'id': voxel[0],
-            'position': [voxel[1], voxel[2], voxel[3]],
-            'num_poses': voxel[4],
-            'pose_id': voxel[5],
-            'muscle_activation': voxel[6],
-            'reserve': voxel[7]
-        })
+    if len(voxels) > 0:
+        voxels = np.array(voxels)
+        # Add a column for normalized comfort values
+        voxels_new = np.zeros((voxels.shape[0], voxels.shape[1] + 1))
+        voxels_new[:, :-1] = voxels
+
+        min_activation = np.amin(voxels_new[:, 6])
+        min_reserve = np.amin(voxels_new[:, 7])
+        max_activation = np.amax(voxels_new[:, 6])
+        max_reserve = np.amax(voxels_new[:, 7])
+        print(min_activation, min_reserve, max_activation, max_reserve, metric)
+
+        if metric == 'muscle_activation':
+            min_activation = 0.0012142493999999998
+            max_activation = 0.1659012612
+            voxels_new[:, 6] -= min_activation
+            voxels_new[:, 6] /= max_activation - min_activation
+            # only for visualization purposes multiply muscle activation
+            voxels_new[:, 8] = voxels_new[:, 6] * 2.5 + voxels_new[:, 7]
+            voxels_sorted = voxels_new[voxels_new[:, 8].argsort()]
+        elif metric == 'weighted_metrics':
+            voxels_new[:, 8] = voxels_new[:, 6]
+            voxels_sorted = voxels_new[voxels_new[:, 8].argsort()]
+        else:
+            # to facilitate visualization
+            if metric == 'consumed_endurance':
+                metric_min = 0.018610636123524517
+                metric_max = 9.599405943409115
+            else:
+                metric_min = 3.0
+                metric_max = 9
+            voxels_new[:, 6] -= metric_min
+            voxels_new[:, 6] /= metric_max - metric_min
+            voxels_new[:, 8] = voxels_new[:, 6]
+            voxels_sorted = voxels_new[voxels_new[:, 8].argsort()]
+            # print(voxels_sorted[:, 8][0], voxels_sorted[:, 8][-1])
+            # normalize comfort value
+            # print(voxels_sorted[:, 8][-10:])
+            # print(voxels_sorted[:, 8][0], voxels_sorted[:, 8][-1])
+            voxels_sorted[:, 8] -= voxels_sorted[:, 8][0]
+            voxels_sorted[:, 8] /= voxels_sorted[:, 8][-1] - voxels_sorted[:, 8][0]
+            # print(voxels_sorted[:, 8])
+
+        for voxel in voxels_sorted.tolist():
+            result.append({
+                'id': int(voxel[0]),
+                'position': [voxel[1], voxel[2], voxel[3]],
+                'num_poses': int(voxel[4]),
+                'pose_id': int(voxel[5]),
+                'comfort': voxel[8]
+            })
     return result
+
+
+def compute_muscle_activation_reserve_function(db_name):
+    conn = pose_database.create_connection(db_name)
+    cursor = conn.cursor()
+    # cursor = conn.cursor()
+    # sql = '''ALTER TABLE arm_poses
+    #          ADD muscle_activation_reserve REAL'''
+    # cursor.execute(sql)
+    # conn.commit()
+
+    # we want to give priority to poses with the lowest reserve values. Hence, we use the max reserve value of all
+    # voxels, where their reserve value is the minimum between all the poses.
+    # voxels that have reserve values among a threshold receive the worst comfort rating (1).
+    poses = pose_database.get_all_poses_muscle_activation(conn)
+
+    reserve_threshold = 250
+    for pose in poses:
+        muscle_activation_reserve = pose[1] + pose[2] / reserve_threshold
+        sql = '''UPDATE arm_poses
+                 SET muscle_activation_reserve = ?
+                 WHERE arm_pose_id = ?'''
+        cursor.execute(sql, (muscle_activation_reserve, pose[0]))
+
+    conn.commit()
+
+
+def compute_weigthed_metrics(db_name):
+    conn = pose_database.create_connection(db_name)
+    cursor = conn.cursor()
+    # sql = '''ALTER TABLE arm_poses
+    #          ADD weighted_metrics REAL'''
+    # cursor.execute(sql)
+
+    # we want to give priority to poses with the lowest reserve values. Hence, we use the max reserve value of all
+    # voxels, where their reserve value is the minimum between all the poses.
+    # voxels that have reserve values among a threshold receive the worst comfort rating (1).
+    poses = pose_database.get_all_poses_all_metrics(conn)
+
+    for arm_id, consumed_endurance, rula, muscle_activation in poses:
+
+        consumed_endurance -= 0.018610636123524517
+        consumed_endurance /= 9.599405943409115
+        consumed_endurance_w = 1/3 * consumed_endurance
+        rula -= 3
+        rula /= 9
+        rula_w = 1/3 * rula
+        if muscle_activation is None:
+            muscle_activation = 1
+        muscle_activation_w = 1/3 * min(1, muscle_activation)
+        sql = '''UPDATE arm_poses
+                 SET weighted_metrics = ?
+                 WHERE arm_pose_id = ?'''
+        cursor.execute(sql, (consumed_endurance_w + rula_w + muscle_activation_w, arm_id))
+
+    conn.commit()
+
+# compute_weigthed_metrics('poses.db')
 
 
 def get_voxel_poses(db_name, x, y, z):
     conn = pose_database.create_connection(db_name)
-    print(x, y, z)
     voxel_id = pose_database.get_voxel_point(conn, x, y, z)[0]
     poses = pose_database.get_poses_in_voxel(conn, voxel_id)
     result = []
@@ -188,7 +319,6 @@ def compute_muscle_activations(db_name):
 
     for pose in poses:
         # pose = poses[2000]
-        print(pose)
         # print(pose_database.get_voxel_by_id(conn, pose[1]))
         if pose[-4] is not None:
             continue
@@ -232,7 +362,7 @@ def compute_consumed_endurance(db_name):
         # print(pose)
         # retrieve pose data and convert to meters
         end_effector = np.array(pose[1:4]) / 100
-        elbow = np.array(pose[4:]) / 100
+        elbow = np.array(pose[4:7]) / 100
 
         # ehv stands for elbow hand vector
         ehv_unit = linalg.normalize(end_effector - elbow)
@@ -255,21 +385,124 @@ def compute_consumed_endurance(db_name):
         conn.commit()
 
 
-def compute_rula(db_name):
+def compute_rula(db_name, arm_proper_length=33):
     conn = pose_database.create_connection(db_name)
     poses = pose_database.get_all_poses_voxels(conn)
 
-    pose = poses[0]
-    print(pose)
+    # pose = poses[0]
+    for pose in poses:
+        # arm pose is already computed for osim
+        end_effector = pose[1:4]
+        # elbow_pos = pose[4:7]
+        elv_angle = pose[7]
+        shoulder_elv = pose[8]
+        elbow_flexion = pose[9]
+
+        rula_score = 0
+
+        # upper arm flexion / extension
+        if shoulder_elv < 20:
+            rula_score += 1
+        elif shoulder_elv < 45:
+            rula_score += 2
+        elif shoulder_elv < 90:
+            rula_score += 3
+        else:
+            rula_score += 4
+
+        # add 1 if upper arm is abducted
+        # we consider arm abducted if elv_angle is < 45 and > -45, and shoulder_elv > 30
+        if -60 > elv_angle < 60 and shoulder_elv > 30:
+            rula_score += 1
+
+        # lower arm flexion
+        if 60 < elbow_flexion < 100:
+            rula_score += 1
+        else:
+            rula_score += 2
+
+        # if lower arm is working across midline or out to the side add 1
+        # according to MoBL model, shoulder is 17cm from thorax on z axis (osim coord system), we use that value:
+        if end_effector[2] + 17 < 0 or end_effector[2] > 0:
+            rula_score += 1
+
+        # wrist is always 1, due to fixed neutral position
+        rula_score += 1
+
+        pose_database.set_pose_rula(conn, pose[0], rula_score)
+        conn.commit()
 
 
+def optimal_position_in_polygon(db_name, polygon):
+    conn = pose_database.create_connection(db_name)
+
+    metric = 'consumed_endurance'
+    sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, arm_poses.arm_pose_id, MIN({}), arm_poses.reserve
+             FROM voxels LEFT OUTER JOIN arm_poses ON arm_poses.voxel_id = voxels.id
+             GROUP BY voxels.id'''.format(metric)
+
+    # params = []
+    # if x is not "" or y is not "" or z is not "":
+    #     sql += 'WHERE '
+    # if x is not "":
+    #     x = float(x)
+    #     sql += 'min_x <= ? AND max_x > ? '
+    #     params += [x, x]
+    # if y is not "":
+    #     y = float(y)
+    #     if x is not "":
+    #         sql += 'AND '
+    #     sql += 'min_y <= ? AND max_y > ? '
+    #     params += [y, y]
+    # if z is not "":
+    #     z = float(z)
+    #     if x is not "" or y is not "":
+    #         sql += 'AND '
+    #     sql += 'min_z <= ? AND max_z > ? '
+    #     params += [z, z]
+    #
+    # sql += ""
+
+    cursor = pose_database.custom_query(conn, sql, [])
+    voxels = cursor.fetchall()
+
+    polygon = np.array(polygon)
+    hull = ConvexHull(polygon.reshape([8, 3]))
+    in_spec = []
+    for voxel in voxels:
+        if voxel[5] is None:
+            continue
+        pos = (voxel[1], voxel[2], voxel[3])
+        if point_in_polygon(hull, pos):
+            in_spec.append([voxel[1], voxel[2], voxel[3], voxel[5]])
+
+    if len(in_spec) > 0:
+        in_spec = np.array(in_spec)
+        in_spec = in_spec[in_spec[:, 3].argsort()]
+        # print(in_spec[in_spec[:, 3].argsort()])
+        return in_spec.tolist()
+    return in_spec
+
+
+def point_in_polygon(polygon, point):
+    '''
+    Checks if `pnt` is inside the convex hull.
+    `hull` -- a QHull ConvexHull object
+    `pnt` -- point array of shape (3,)
+    '''
+    new_hull = ConvexHull(np.concatenate((polygon.points, [point])))
+    if np.array_equal(new_hull.vertices, polygon.vertices):
+        return True
+    return False
+
+# optimal_position_in_polygon('poses.db', [0.34324583411216736, 0.17320507764816284, 0.25422555208206177, 0.34324583411216736, -0.17320507764816284, 0.25422555208206177, -0.2588087320327759, -0.17320507764816284, 0.33980342745780945, -0.2588087320327759, 0.17320507764816284, 0.33980342745780945, 1144.15283203125, 577.3502807617188, 847.4183959960938, 1144.15283203125, -577.3502807617188, 847.4183959960938, -862.6958618164062, -577.3502807617188, 1132.677978515625, -862.6958618164062, 577.3502807617188, 1132.677978515625])
 
 # pose_database.drop_tables(pose_database.create_connection('poses.db'))
 # initialize_pose_db('poses.db')
 # compute_all_arm_pos('poses.db')
 # compute_muscle_activations('poses.db')
 # compute_consumed_endurance('poses.db')
-compute_rula('poses.db')
+# compute_rula('poses.db')
 
 # r = get_voxel_poses('poses.db', 32.5, 1.5, 42.5)
 # for p in r:

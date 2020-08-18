@@ -65,6 +65,15 @@
         "com.unity.modules.ui": "1.0.0"
       }
     },
+    "com.unity.xr.windowsmr.metro": {
+      "version": "4.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
