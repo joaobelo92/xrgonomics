@@ -46,21 +46,30 @@ public static class Serialization
         public float x;
         public float y;
         public float z;
+        public string metric;
+    }
+    
+    
+    [Serializable]
+    public class ComputeErgonomicCostRequest
+    {
+        public ComputeErgonomicCostRequest(float armProperLength, float forearmHandLength, int voxelSideLength)
+        {
+            this.armProperLength = armProperLength;
+            this.forearmHandLength = forearmHandLength;
+            this.voxelSideLength = voxelSideLength;
+        }
+        public float armProperLength;
+        public float forearmHandLength;
+        public float voxelSideLength;
     }
     
     [Serializable]
     public class VoxelRequest
     {
-        public string x;
-        public string y;
-        public string z;
-        [JsonProperty(PropertyName = "x_constraint")]
-        public string xConstraint;
-        [JsonProperty(PropertyName = "y_constraint")]
-        public string yConstraint;
-        [JsonProperty(PropertyName = "z_constraint")]
-        public string zConstraint;
         public string metric;
+
+        public Constraint[] constraints;
     }
     
     [Serializable]
@@ -74,7 +83,28 @@ public static class Serialization
     {
         public int id;
         public float[] elbow;
+        public float comfort;
     }
-    
+
+    [Serializable]
+    public class Constraint
+    {
+        public int axis;
+        public string constraint;
+        public float value;
+
+        public Constraint(int axis, string constraint, float value)
+        {
+            this.axis = axis;
+            this.constraint = constraint;
+            this.value = value;
+        }
+        
+        public override string ToString()
+        {
+            var axisStr = new string[] {"X", "Y", "Z"};
+            return $"{axisStr[axis]} {constraint} {value:n2}";
+        }
+    }
     
 }

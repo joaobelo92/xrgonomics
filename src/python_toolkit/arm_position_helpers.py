@@ -5,8 +5,8 @@ from numpy.core._multiarray_umath import ndarray
 
 import linalg_helpers
 import exceptions
-import biomechanics
-import opensim as osim
+# import biomechanics
+# import opensim as osim
 
 base_pos = np.array([[0, 0, 0]])
 
@@ -94,9 +94,9 @@ def compute_valid_elbow_positions(end_effector, elbow, elbow_prime, step=5, hand
     for angle in range(0, 360, step):
         current_pos = linalg_helpers.euler_rodrigues_rotation(end_effector, angle, elbow)
         # z axis matters in this case. We do not want rotations where the elbow.z > elbow_prime.z
-        if hand is 'r' and current_pos[2] > elbow_prime[2]:
+        if hand == 'r' and current_pos[2] > elbow_prime[2]:
             num_rotations += 1
-        elif hand is 'l' and current_pos[2] < elbow_prime[2]:
+        elif hand == 'l' and current_pos[2] < elbow_prime[2]:
             num_rotations += 1
 
     rotations = np.empty([num_rotations, 3])
@@ -104,10 +104,10 @@ def compute_valid_elbow_positions(end_effector, elbow, elbow_prime, step=5, hand
     for angle in range(0, 360, step):
         current_pos = linalg_helpers.euler_rodrigues_rotation(end_effector, angle, elbow)
         # z axis matters in this case. We do not want rotations where the elbow.z > elbow_prime.z
-        if hand is 'r' and current_pos[2] > elbow_prime[2]:
+        if hand == 'r' and current_pos[2] > elbow_prime[2]:
             rotations[curr_idx] = current_pos
             curr_idx += 1
-        elif hand is 'l' and current_pos[2] < elbow_prime[2]:
+        elif hand == 'l' and current_pos[2] < elbow_prime[2]:
             rotations[curr_idx] = current_pos
             curr_idx += 1
     return rotations
@@ -143,14 +143,14 @@ def compute_base_shoulder_rot(elv_angle, shoulder_elv):
     return humerus1_base_coord
 
 
-def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_length, model,
-                             rotation_step=-math.pi / 8, limit=-math.pi * 3 / 4):
+def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_length,
+                             rotation_step=-math.pi / 8, limit=-math.pi * 3 / 4, model=None):
     arm_poses = []
     u, v, c, r = compute_elbow_plane(end_effector, arm_proper_length, forearm_hand_length)
 
     # If result is None, pose is not possible with current constraints
     if u is None:
-        return arm_poses, 0
+        return arm_poses
 
     # rotate from 0 to 135 degrees
     elbow_positions = []
@@ -196,34 +196,33 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
         point = humerus_transform @ np.array([forearm_vector[0], forearm_vector[1], forearm_vector[2], 1])
         shoulder_rot = -math.degrees(math.atan2(point[2], point[0]))
 
-        _, markers = biomechanics.retrieve_dependent_coordinates(model, math.degrees(elv_angle),
-                                                                 math.degrees(shoulder_elv), shoulder_rot,
-                                                                 elbow_flexion_osim)
-
-        shoulder_base_pos = np.array([-0.0109379, 0.0239952, 0.17469])
-
-        # TODO: compute std deviation
-        # validation of elbow position
-        current_elbow_pos = shoulder_base_pos + elbow_pos / 100
-        error_elbow = linalg_helpers.magnitude(np.array(markers['R.Elbow.Center']) - (np.array(current_elbow_pos)))
-        error_elbow_acc += error_elbow
-
-        # validation of end_effector position
-        current_end_effector_pos = shoulder_base_pos + end_effector / 100
-        error_end_effector = linalg_helpers.magnitude(np.array(markers['End.Effector']) -
-                                                      (np.array(current_end_effector_pos)))
-        error_end_effector_acc += error_end_effector
-
         arm_poses.append({'elbow_x': elbow_pos[0], 'elbow_y': elbow_pos[1], 'elbow_z': elbow_pos[2],
                           'elv_angle': math.degrees(elv_angle), 'shoulder_elv': math.degrees(shoulder_elv),
                           'shoulder_rot': shoulder_rot, 'elbow_flexion': elbow_flexion_osim})
 
+        # Only for validation, opensim required (FW: compute std deviation)
+        # _, markers = biomechanics.retrieve_dependent_coordinates(model, math.degrees(elv_angle),
+        #                                                          math.degrees(shoulder_elv), shoulder_rot,
+        #                                                          elbow_flexion_osim)
+
+        # shoulder_base_pos = np.array([-0.0109379, 0.0239952, 0.17469])
+
+        # validation of elbow position
+        # current_elbow_pos = shoulder_base_pos + elbow_pos / 100
+        # error_elbow = linalg_helpers.magnitude(np.array(markers['R.Elbow.Center']) - (np.array(current_elbow_pos)))
+        # error_elbow_acc += error_elbow
+        #
+        # # validation of end_effector position
+        # current_end_effector_pos = shoulder_base_pos + end_effector / 100
+        # error_end_effector = linalg_helpers.magnitude(np.array(markers['End.Effector']) -
+        #                                               (np.array(current_end_effector_pos)))
+        # error_end_effector_acc += error_end_effector
         # print(shoulder_base_pos, current_end_effector_pos, np.array(markers['End.Effector']))
         # print(elbow_pos, np.array(markers['End.Effector']) - shoulder_base_pos, error_elbow,
-        #       error_end_effector, math.degrees(elv_angle), math.degrees(shoulder_elv), shoulder_rot, elbow_flexion_osim)
-
-    print(end_effector, error_elbow_acc/len(elbow_positions), error_end_effector_acc/len(elbow_positions))
-    return arm_poses, error_elbow_acc
+        #       error_end_effector, math.degrees(elv_angle), math.degrees(shoulder_elv), shoulder_rot,
+        #       elbow_flexion_osim)
+        # print(end_effector, error_elbow_acc/len(elbow_positions), error_end_effector_acc/len(elbow_positions))
+    return arm_poses
 
 
 # model = osim.Model('../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim')

@@ -53,13 +53,13 @@ def create_tables(conn):
                   FOREIGN KEY (voxel_id) REFERENCES voxels (id))''')
 
 
-def insert_anchor(conn, anchor):
+def insert_voxel(conn, voxel):
     cursor = conn.cursor()
     sql = '''INSERT INTO voxels(min_x, max_x, min_y, max_y, min_z, max_z,
                                  x, y, z) 
              VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'''
 
-    cursor.execute(sql, anchor)
+    cursor.execute(sql, voxel)
     return cursor.lastrowid
 
 
@@ -197,10 +197,10 @@ def get_voxels_limits(conn):
     return result
 
 
-def get_poses_in_voxel(conn, voxel_id):
+def get_poses_in_voxel(conn, voxel_id, metric):
     cursor = conn.cursor()
-    sql = '''SELECT * FROM arm_poses
-             WHERE voxel_id = ?'''
+    sql = '''SELECT arm_pose_id, elbow_x, elbow_y, elbow_z, {}, muscle_activation_reserve FROM arm_poses
+             WHERE voxel_id = ?'''.format(metric)
     cursor.execute(sql, (voxel_id,))
     return cursor
 

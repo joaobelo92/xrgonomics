@@ -10,6 +10,8 @@ context = zmq.Context()
 socket = context.socket(zmq.REP)
 socket.bind('tcp://*:5555')
 
+toolkit = arm_position.XRgonomics()
+
 while True:
     since = time.time()
     request = socket.recv_multipart()
@@ -31,28 +33,34 @@ while True:
         print('Received request, time: {}'.format(time.time() - since))
 
         socket.send(b'Image data')
-    # elif request[0].decode('utf-8') == 'A':
-    #     anchors = arm_position.get_all_voxels('poses.db')
-    #     anchors_json = {'anchors': anchors}
-    #     socket.send(json.dumps(anchors_json).encode('utf-8'))
     elif request[0].decode('utf-8') == 'C':
-        since = time.time()
         req = json.loads(request[1])
-        anchors = arm_position.get_voxels_constrained('poses.db', *req.values())
+        anchors = toolkit.get_voxels_constrained(*req.values())
         socket.send(json.dumps(anchors).encode('utf-8'))
         duration = time.time() - since
-        print(duration)
+    elif request[0].decode('utf-8') == 'I':
+        voxels = toolkit.get_last_interaction_space()
+        socket.send(json.dumps(voxels).encode('utf-8'))
     elif request[0].decode('utf-8') == 'P':
         req = json.loads(request[1])
-        poses = arm_position.get_voxel_poses('poses.db', *req.values())
+        poses = toolkit.get_voxel_poses(*req.values())
         socket.send(json.dumps(poses).encode('utf-8'))
     elif request[0].decode('utf-8') == 'L':
-        limits = arm_position.get_interaction_space_limits('poses.db')
+        limits = toolkit.get_interaction_space_limits()
         socket.send(json.dumps(limits).encode('utf-8'))
     elif request[0].decode('utf-8') == 'O':
         req = json.loads(request[1])
-        # print(req)
-        voxels = arm_position.optimal_position_in_polygon('poses.db', req['polygon'])
+        voxels = toolkit.optimal_position_in_polygon(req['polygon'])
+        socket.send(json.dumps(voxels).encode('utf-8'))
+    elif request[0].decode('utf-8') == 'A':
+        req = json.loads(request[1])
+        # print(*req.values())
+        toolkit = arm_position.XRgonomics('{:.2f}_{:.2f}_{}.db'.format(*req.values()), *req.values())
+        voxels = toolkit.get_voxels_constrained('consumed_endurance', [])
+        socket.send(json.dumps(voxels).encode('utf-8'))
+    elif request[0].decode('utf-8') == 'D':
+        toolkit = arm_position.XRgonomics()
+        voxels = toolkit.get_voxels_constrained('consumed_endurance', [])
         socket.send(json.dumps(voxels).encode('utf-8'))
     else:
         socket.send(b'Error')
