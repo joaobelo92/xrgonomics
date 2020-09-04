@@ -51,6 +51,8 @@ class XRgonomics:
         return result
 
     def get_voxels_constrained(self, metric, constraints):
+        if metric == 'last_interaction_space':
+            return self.get_last_interaction_space()
         if metric == 'muscle_activation':
             query = metric + ', MIN(arm_poses.muscle_activation_reserve)'
         else:
@@ -159,11 +161,6 @@ class XRgonomics:
     def get_last_interaction_space(self):
         result = []
         if self.is_updated < self.is_version:
-            metric_min = 0.018610636123524517
-            metric_max = 9.599405943409115
-            interaction_space = self.last_interaction_space
-            interaction_space[:, 3] -= metric_min
-            interaction_space[:, 3] /= metric_max - metric_min
             for voxel in self.last_interaction_space:
                 result.append({
                     'id': 0,
@@ -333,7 +330,7 @@ class XRgonomics:
             self.conn.commit()
 
     def optimal_position_in_polygon(self, polygon):
-        metric = 'consumed_endurance'
+        metric = 'weighted_metrics'
         sql = '''SELECT voxels.id, voxels.x, voxels.y, voxels.z, arm_poses.arm_pose_id, MIN({}), arm_poses.reserve
                  FROM voxels LEFT OUTER JOIN arm_poses ON arm_poses.voxel_id = voxels.id
                  GROUP BY voxels.id'''.format(metric)
@@ -354,7 +351,6 @@ class XRgonomics:
         if len(in_spec) > 0:
             in_spec = np.array(in_spec)
             in_spec = in_spec[in_spec[:, 3].argsort()]
-            # print(in_spec[in_spec[:, 3].argsort()])
             self.last_interaction_space = in_spec
             self.is_version += 1
             return {
@@ -376,18 +372,18 @@ class XRgonomics:
             return True
         return False
 
-    def get_sql_constraint(self, axis, constraint, value):
-        sql = ''
-        params = []
-        axis_strs = ['x', 'y', 'z']
-        axis_str = axis_strs[axis]
-        if constraint == '=':
-            sql += 'min_{axis} <= ? AND max_{axis} > ? '.format(axis=axis_str)
-            params += [value, value]
-        else:
-            sql += '{}_{axis} {constraint} ? '.format('max' if constraint == '<=' else 'min',
-                                                      axis=axis_str, constraint=constraint)
-            params += [value]
+    # def get_sql_constraint(self, axis, constraint, value):
+    #     sql = ''
+    #     params = []
+    #     axis_strs = ['x', 'y', 'z']
+    #     axis_str = axis_strs[axis]
+    #     if constraint == '=':
+    #         sql += 'min_{axis} <= ? AND max_{axis} > ? '.format(axis=axis_str)
+    #         params += [value, value]
+    #     else:
+    #         sql += '{}_{axis} {constraint} ? '.format('max' if constraint == '<=' else 'min',
+    #                                                   axis=axis_str, constraint=constraint)
+    #         params += [value]
 
 
 def get_sql_constraint(axis, constraint, value):

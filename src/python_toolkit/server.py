@@ -38,9 +38,6 @@ while True:
         anchors = toolkit.get_voxels_constrained(*req.values())
         socket.send(json.dumps(anchors).encode('utf-8'))
         duration = time.time() - since
-    elif request[0].decode('utf-8') == 'I':
-        voxels = toolkit.get_last_interaction_space()
-        socket.send(json.dumps(voxels).encode('utf-8'))
     elif request[0].decode('utf-8') == 'P':
         req = json.loads(request[1])
         poses = toolkit.get_voxel_poses(*req.values())
@@ -54,7 +51,6 @@ while True:
         socket.send(json.dumps(voxels).encode('utf-8'))
     elif request[0].decode('utf-8') == 'A':
         req = json.loads(request[1])
-        # print(*req.values())
         toolkit = arm_position.XRgonomics('{:.2f}_{:.2f}_{}.db'.format(*req.values()), *req.values())
         voxels = toolkit.get_voxels_constrained('consumed_endurance', [])
         socket.send(json.dumps(voxels).encode('utf-8'))
