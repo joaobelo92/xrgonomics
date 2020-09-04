@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -109,6 +108,7 @@ public class UIEvents : MonoBehaviour
         _zConstraint = "=";
         _spacing = 5;
         _constraints = new List<Serialization.Constraint>();
+        _clientBusy = true;
         StartCoroutine(GetLimits());
         interactionModeButton.gameObject.SetActive(true);
     }
@@ -120,7 +120,7 @@ public class UIEvents : MonoBehaviour
             if (!_clientBusy)
             {
                 _clientBusy = true;
-                StartCoroutine(GetVoxels());
+                StartCoroutine(GetLastInteractionSpace());
             }
         } else
         {
@@ -273,6 +273,7 @@ public class UIEvents : MonoBehaviour
     {
         _pythonNetworking.PerformRequest("L", null);
         yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
+        print(_pythonNetworking.requestResult);
         var limits = JsonConvert.DeserializeObject<Serialization.Limits>(_pythonNetworking.requestResult);
         xSlider.minValue = limits.minX;
         xSlider.maxValue = limits.maxX;
@@ -284,7 +285,10 @@ public class UIEvents : MonoBehaviour
         constraintValueSlider.maxValue = Math.Max(limits.maxX, Math.Max(limits.maxY, limits.maxZ));
         UpdateFilters(false);
         _clientBusy = false;
-        StartCoroutine(DefaultErgonomicCostRequest());
+        if (!isMode)
+        {
+            StartCoroutine(DefaultErgonomicCostRequest());
+        }
     }
 
     private IEnumerator GetVoxels()
@@ -308,13 +312,14 @@ public class UIEvents : MonoBehaviour
             allContraints.Add(new Serialization.Constraint(1, _yConstraint, ySlider.value));
         if (zToggle.isOn)
             allContraints.Add(new Serialization.Constraint(2, _zConstraint, zSlider.value));
-        
+
         var poseRequest = new Serialization.VoxelRequest()
         {
             metric = metricString,
             constraints = allContraints.ToArray()
         };
         var poseRequestJson = JsonUtility.ToJson(poseRequest);
+        print(poseRequestJson);
         _pythonNetworking.PerformRequest("C", poseRequestJson);
         yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
         var voxels = JsonConvert.DeserializeObject<Serialization.Voxel[]>(_pythonNetworking.requestResult);
@@ -331,6 +336,43 @@ public class UIEvents : MonoBehaviour
         }
         _clientBusy = false;
     }
+    
+    private IEnumerator GetLastInteractionSpace()
+    {
+        var metricString = "last_interaction_space";
+        
+        var poseRequest = new Serialization.VoxelRequest()
+        {
+            metric = metricString,
+            constraints = new List<Serialization.Constraint>(_constraints).ToArray()
+        };
+        
+        var poseRequestJson = JsonUtility.ToJson(poseRequest);
+        _pythonNetworking.PerformRequest("C", poseRequestJson);
+        yield return new WaitUntil(() => _pythonNetworking.requestResult != null);
+        var voxels = JsonConvert.DeserializeObject<Serialization.Voxel[]>(_pythonNetworking.requestResult);
+
+        if (voxels.Length > 0)
+        {
+            foreach (Transform child in interactionSpace.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        for (var i = 0; i < voxels.Length; i++)
+        {
+            var position = new Vector3(voxels[i].position[2], voxels[i].position[1],
+                voxels[i].position[0]);
+            var scale = new Vector3(_spacing, _spacing, _spacing);
+            var comfort = voxels[i].comfort ?? 1;
+            
+            var color = Color.Lerp(Color.blue, Color.red, comfort);
+            Helpers.CreatePrimitiveGameObject(PrimitiveType.Cube, position, scale,
+                interactionSpace.transform, i.ToString(), false, voxelShader, color);
+        }
+        _clientBusy = false;
+    }
+    
     
     private IEnumerator GetVoxelPoses(GameObject voxel)
     {
@@ -353,7 +395,6 @@ public class UIEvents : MonoBehaviour
         Instantiate(voxel, poses.transform);
 
         var pos = voxel.transform.position;
-        print(pos.magnitude);
         var poseRequest = new Serialization.PoseRequest
         {
             x = pos.z,

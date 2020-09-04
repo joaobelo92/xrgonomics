@@ -39,7 +39,7 @@ public class PythonNetworking
         AsyncIO.ForceDotNet.Force();
 
         requestSocket = new RequestSocket();
-        requestSocket.Connect("tcp://127.0.0.1:5555");
+        requestSocket.Connect("tcp://192.168.0.104:5555");
         
         isAvailable = true;
 
