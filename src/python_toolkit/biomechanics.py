@@ -1,6 +1,5 @@
 import opensim as osim
 import math
-import xml.etree.ElementTree
 
 
 def retrieve_dependent_coordinates(model, elv_angle, shoulder_elv, shoulder_rot, elbow_flexion):

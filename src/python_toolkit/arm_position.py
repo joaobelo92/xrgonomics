@@ -7,6 +7,7 @@ import numpy as np
 from scipy.spatial import ConvexHull
 import time
 
+
 class XRgonomics:
     def __init__(self, database='poses.db', arm_proper_length=33, forearm_hand_length=46, spacing=10):
         since = time.time()
@@ -92,11 +93,6 @@ class XRgonomics:
 
     def compute_muscle_activation_reserve_function(self):
         cursor = self.conn.cursor()
-        # cursor = conn.cursor()
-        # sql = '''ALTER TABLE arm_poses
-        #          ADD muscle_activation_reserve REAL'''
-        # cursor.execute(sql)
-        # conn.commit()
 
         # we want to give priority to poses with the lowest reserve values. Hence, we use the max reserve value of all
         # voxels, where their reserve value is the minimum between all the poses.
@@ -115,13 +111,7 @@ class XRgonomics:
 
     def compute_weigthed_metrics(self):
         cursor = self.conn.cursor()
-        # sql = '''ALTER TABLE arm_poses
-        #          ADD weighted_metrics REAL'''
-        # cursor.execute(sql)
 
-        # we want to give priority to poses with the lowest reserve values. Hence, we use the max reserve value of all
-        # voxels, where their reserve value is the minimum between all the poses.
-        # voxels that have reserve values among a threshold receive the worst comfort rating (1).
         poses = pose_database.get_all_poses_all_metrics(self.conn)
 
         for arm_id, consumed_endurance, rula, muscle_activation in poses:
@@ -186,14 +176,6 @@ class XRgonomics:
             'max_z': limits[5],
         }
         return limits_dict
-
-    # def compute_all_arm_pos(self):
-    #     for voxel in self.get_all_voxels():
-    #         poses = self.compute_arm_pos(voxel['position'], self.arm_proper_length, self.forearm_hand_length)
-    #         for pose in poses:
-    #             # print((voxel['id'], *pose.values()))
-    #             pose_database.insert_arm_pose(self.conn, (voxel['id'], *pose.values()))
-    #     self.conn.commit()
 
     def compute_all_arm_pos(self):
         # model = osim.Model('../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim')
@@ -361,30 +343,18 @@ class XRgonomics:
                 "pos": []
             }
 
-    def point_in_polygon(self, polygon, point):
-        '''
-        Checks if `pnt` is inside the convex hull.
+    @staticmethod
+    def point_in_polygon(polygon, point):
+        """
+        Checks if `pnt` is inside the convex hull. Currently necessary since sqlite python bindings do not support
+        custom r*-tree queries.
         `hull` -- a QHull ConvexHull object
         `pnt` -- point array of shape (3,)
-        '''
+        """
         new_hull = ConvexHull(np.concatenate((polygon.points, [point])))
         if np.array_equal(new_hull.vertices, polygon.vertices):
             return True
         return False
-
-    # def get_sql_constraint(self, axis, constraint, value):
-    #     sql = ''
-    #     params = []
-    #     axis_strs = ['x', 'y', 'z']
-    #     axis_str = axis_strs[axis]
-    #     if constraint == '=':
-    #         sql += 'min_{axis} <= ? AND max_{axis} > ? '.format(axis=axis_str)
-    #         params += [value, value]
-    #     else:
-    #         sql += '{}_{axis} {constraint} ? '.format('max' if constraint == '<=' else 'min',
-    #                                                   axis=axis_str, constraint=constraint)
-    #         params += [value]
-
 
 def get_sql_constraint(axis, constraint, value):
     axis_strs = ['x', 'y', 'z']
@@ -433,21 +403,6 @@ def normalize_comfort_metric(array, comfort_index, metric):
         array_sorted = array_new[array_new[:, -1].argsort()]
 
     return array_sorted
-
-
-# optimal_position_in_polygon('poses.db', [0.34324583411216736, 0.17320507764816284, 0.25422555208206177, 0.34324583411216736, -0.17320507764816284, 0.25422555208206177, -0.2588087320327759, -0.17320507764816284, 0.33980342745780945, -0.2588087320327759, 0.17320507764816284, 0.33980342745780945, 1144.15283203125, 577.3502807617188, 847.4183959960938, 1144.15283203125, -577.3502807617188, 847.4183959960938, -862.6958618164062, -577.3502807617188, 1132.677978515625, -862.6958618164062, 577.3502807617188, 1132.677978515625])
-
-# pose_database.drop_tables(pose_database.create_connection('poses.db'))
-# initialize_pose_db('poses.db')
-# compute_all_arm_pos('poses.db')
-# compute_muscle_activations('poses.db')
-# compute_consumed_endurance('poses.db')
-# compute_rula('poses.db')
-
-# r = get_voxel_poses('poses.db', 32.5, 1.5, 42.5)
-# for p in r:
-#     print(p)
-# print(len(r), r)
 
 
 

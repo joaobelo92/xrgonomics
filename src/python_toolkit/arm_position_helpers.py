@@ -1,8 +1,6 @@
 import numpy as np
 import math
 
-from numpy.core._multiarray_umath import ndarray
-
 import linalg_helpers
 import exceptions
 # import biomechanics
@@ -25,16 +23,6 @@ def compute_elbow_plane(end_effector, arm_proper_length, forearm_hand_length, sh
     if b > a + c:
         return None, None, None, None
         # raise exceptions.MathError('End effector magnitude is larger than arm\'s length')
-
-    # angle_ab = law_of_cosines_angle(a, b, c)
-
-    # a_prime = math.cos(theta_4) * c
-    # d = math.sin(theta_4) * c
-    #
-    # end_effector_normalized = linalg_helpers.normalize(end_effector)
-    # a_prime_prime = end_effector_normalized * (c - a_prime)
-    # d_unit_vector = linalg_helpers.normalize(np.cross(end_effector, np.array([0, 1, 0]), axis=0))
-    # d_vector = d_unit_vector * d
 
     # end effector unit vector (normal vector of the swivel plane)
     n = linalg_helpers.normalize(end_effector)
@@ -119,7 +107,7 @@ def compute_base_shoulder_rot(elv_angle, shoulder_elv):
     # Potential source of issues, x-z coordinates are swapped
     shoulder_elv_axis = np.array([-0.99826136, 0.0023, 0.05889802, 1])
 
-    humerus_base_coord: ndarray = np.identity(4)
+    humerus_base_coord = np.identity(4)
 
     # elv_angle is negative, due to OpenSim coordinate system
     transform = linalg_helpers.euler_rodrigues_rotation(elv_angle_axis, elv_angle)
@@ -155,9 +143,7 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
     # rotate from 0 to 135 degrees
     elbow_positions = []
     theta = 0
-    # TODO: remove redundant elbow_pos (e.g. r is small)
-    # TODO: handle max elbow flexion
-    # TODO: validate rotation direction
+
     while theta > limit:
         elbow_positions.append(r * (math.cos(theta) * u + math.sin(theta) * v) + c)
         theta += rotation_step
@@ -223,7 +209,3 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
         #       elbow_flexion_osim)
         # print(end_effector, error_elbow_acc/len(elbow_positions), error_end_effector_acc/len(elbow_positions))
     return arm_poses
-
-
-# model = osim.Model('../../assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim')
-# poses, err = compute_anchor_arm_poses(np.array([10, -46, -40]), 33, 48, model)

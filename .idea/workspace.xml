@@ -2,9 +2,458 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bc32835-b2d3-4d34-bf73-0136fe7b9317" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/CMC_ControlConstraints.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/CMC_Tasks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/CMC_setup.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/1mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/2distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/2mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/2midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/2proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/3distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/3mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/3midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/3proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/4distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/4mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/4midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/4proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/5distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/5mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/5midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/5proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/Cube.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_1mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_2distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_2mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_2midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_2proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_3distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_3mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_3midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_3proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_4distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_4mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_4midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_4proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_5distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_5mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_5midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_5proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_capitate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_hamate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_humerus.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_lunate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_pisiform.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_radius.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_scaphoid.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_thumbdist.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_thumbprox.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_trapezium.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_trapezoid.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_triquetrum.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arm_r_ulna.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/arrow.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/axes.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/bofoot.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/box.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/bucket.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/calcaneous_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/calcaneous_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/capitate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/capitate_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/capitate_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv1.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv1sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv2.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv2sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv3.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv3sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv4.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv4sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv5.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv5sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv6.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv6sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cerv7.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/clavicle.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/clavicle_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/clavicle_lvsm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/clavicle_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/clavicle_rvsm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cone.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cuboid_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cuboid_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/cylinder.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx1_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx1_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx2_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx2_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx3_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx3_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx4_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx5_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/distal_phalanx5_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/femur.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/femur_l.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/femur_r.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fibula.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fibula_l.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fibula_r.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers1.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers10.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers11.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers12.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers13.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers14.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers15.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers16.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers17.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers18.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers19.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers2.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers3.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers4.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers5.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers6.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers7.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers8.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/fingers9.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/first_cuneiform_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/first_cuneiform_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/foot.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ground_jaw.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ground_r_clavicle.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ground_r_scapula.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ground_ribs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ground_skull.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ground_spine.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hamate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hamate_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hamate_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_1mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_2distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_2midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_2proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_3distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_3midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_3proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_4distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_4midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_4proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_5distph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_5midph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_5proxph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_thumbdist.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hand_thumbprox.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hat_jaw.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hat_ribs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hat_skull.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/hat_spine.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/humerus.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/humerus_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/humerus_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/index_distal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/index_distal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/index_medial_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/index_medial_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/index_proximal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/index_proximal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/jaw.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/jaw_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_bofoot.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_femur.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_fibula.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_foot.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_pat.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_patella.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_pelvis.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_talus.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/l_tibia.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/line.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/little_distal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/little_distal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/little_medial_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/little_medial_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/little_proximal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/little_proximal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar1.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar1sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar2.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar2sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar3.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar3sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar4.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar4sm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lumbar5.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lunate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lunate_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/lunate_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal1_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal1_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal2_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal2_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal3_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal3_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal4_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal4_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal5_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metacarpal5_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal1_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal1_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal2_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal2_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal3_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal3_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal4_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal4_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal5_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/metatarsal5_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx2_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx2_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx3_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx3_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx4_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx4_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx5_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/mid_phalanx5_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/middle_distal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/middle_distal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/middle_medial_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/middle_medial_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/middle_proximal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/middle_proximal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/navicular_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/navicular_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/outline.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pat.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/patella_l.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/patella_r.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pelvis.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pelvis_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pelvis_lvR.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pelvis_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pelvis_rvR.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pisiform.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pisiform_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/pisiform_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/plane.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx1_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx1_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx2_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx2_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx3_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx3_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx4_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx4_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx5_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/prox_phalanx5_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_ham.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_lun.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_pis.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_scaph.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_triq.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_trpzd.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/r_trpzm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/radius.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/radius_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/radius_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ribcage.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ribcage_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ring_distal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ring_distal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ring_medial_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ring_medial_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ring_proximal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ring_proximal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sacrum.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scaphoid.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scaphoid_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scaphoid_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scapula.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scapula_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scapula_lvsm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scapula_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/scapula_rvsm.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfastPISIFORMw.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfastSCAPHOIDw.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfastTRIQUETRALw.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_2mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_3mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_4mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_5mc.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_hamate.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_trapezium.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sdfast_1seg_hand_fr_c_trapezoid.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/second_cuneiform_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/second_cuneiform_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/skull.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/skull_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/sphere.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/superquadric.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/talus.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/talus_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/talus_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/third_cuneiform_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/third_cuneiform_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic1.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic10.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic10_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic11.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic11_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic12.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic12_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic1_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic2.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic2_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic3.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic3_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic4.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic4_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic5.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic5_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic6.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic6_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic7.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic7_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic8.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic8_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic9.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thoracic9_s.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thorax.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thumb_distal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thumb_distal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thumb_proximal_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thumb_proximal_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thumbdist.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/thumbprox.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/tibia.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/tibia_l.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/tibia_r.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/trapezium.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/trapezium_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/trapezium_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/trapezoid.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/trapezoid_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/trapezoid_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/treadmill.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/triquetrum.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/triquetrum_lvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/triquetrum_rvs.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ulna.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ulna_lv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/ulna_rv.vtp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Geometry/unit_plane.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/MoBL_ARMS_Strong_actuators.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/MoBL_ARMS_Strong_actuators_no_penalty.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/MoBL_ARMS_module6_7_CMC_updated_unlocked.osim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/Actuators.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/MoBL_ARMS_Strong_actuators copy 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/MoBL_ARMS_Strong_actuators copy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/MoBL_ARMS_Upper_Limb_Model_OpenSim_StaticOptimization_activation.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/MoBL_ARMS_Upper_Limb_Model_OpenSim_StaticOptimization_controls.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/MoBL_ARMS_Upper_Limb_Model_OpenSim_StaticOptimization_force.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/MoBL_ARMS_module6_CMC_Setup.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/anchor-0.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/anchor-1.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/anchor-2.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/anchor-3.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/hard.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/inverse_dynamics.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/medium-hard.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/r1_StaticOptimization_activation.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/r1_StaticOptimization_controls.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/r1_StaticOptimization_force.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/test.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/backup/very-hard.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_1/pose_1.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_51/pose_51.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_51/results/MoBL_ARMS_Upper_Limb_Model_OpenSim_StaticOptimization_activation.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_51/results/MoBL_ARMS_Upper_Limb_Model_OpenSim_StaticOptimization_controls.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_51/results/MoBL_ARMS_Upper_Limb_Model_OpenSim_StaticOptimization_force.sto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_51/so.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/discomfort_experiments/pose_91/pose_91.mot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/so_baseline.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/id/inverse_dynamics.sto" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/python_toolkit/arm_position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/arm_position.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python_toolkit/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/arm_position_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/arm_position_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/biomechanics.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/biomechanics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/old_tries" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/pose_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python_toolkit/pose_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python_toolkit/poses.db copy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/.idea/.idea.UIOptimization/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/.idea/.idea.UIOptimization/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/prefabs/clothingSet_04_And_nackedSet.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/prefabs/clothingSet_04_And_nackedSet.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/scene1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/scene1.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials/clothingSet_04_tex.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials/clothingSet_04_tex.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials/girl_texture_01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials/girl_texture_01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials/hair1.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/Materials/hair1.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/clothingSet_04.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/clothingSet_04.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/clothingSet_04_And_nackedSet.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/clothingSet_04_And_nackedSet.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/clothingSet_04_tex.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/clothingSet_04_tex.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/girlAC.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/girlAC.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/girl_texture_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/girl_texture_01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/hair1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/hair1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/idleAnimation.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/idleAnimation.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/nackedSet.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Cattleya/sources/nackedSet.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Materials/New Material 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Materials/New Material 2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/MixedRealityToolkit.Generated.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/MixedRealityToolkit.Generated/MRTK.Generated.sentinel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/MixedRealityToolkit.Generated/MRTK.Generated.sentinel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/MixedRealityToolkit.Generated/ProjectPreferences.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/MixedRealityToolkit.Generated/ProjectPreferences.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scenes/XRgonomics Visualizer.unity" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scenes/XRgonomics Visualizer.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scripts/PythonNetworking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/Scripts/PythonNetworking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/actions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/actions.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_holographic_hmd.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_holographic_hmd.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_index_hmd.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_index_hmd.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_rift.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_rift.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive_cosmos.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive_cosmos.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive_pro.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive_pro.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive_tracker_camera.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/binding_vive_tracker_camera.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_holographic_controller.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_holographic_controller.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_knuckles.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_knuckles.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_oculus_touch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_oculus_touch.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_vive_controller.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_vive_controller.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_vive_cosmos_controller.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Assets/StreamingAssets/SteamVR/bindings_vive_cosmos_controller.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity_prototype/UIOptimization/unityProject.vrmanifest" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +646,10 @@
       <workItem from="1598451059710" duration="11159000" />
       <workItem from="1598871950644" duration="1757000" />
       <workItem from="1598941474535" duration="5520000" />
-      <workItem from="1598960175425" duration="18087000" />
+      <workItem from="1598960175425" duration="19834000" />
+      <workItem from="1599461175306" duration="6714000" />
+      <workItem from="1599906777035" duration="267000" />
+      <workItem from="1600168743271" duration="852000" />
     </task>
     <servers />
   </component>
@@ -205,52 +657,48 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1001" y="540" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591024701098">
-      <screen x="0" y="23" width="2560" height="1417" />
-    </state>
-    <state x="1001" y="540" key="#com.intellij.fileTypes.FileTypeChooser/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1591024701098" />
     <state x="528" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1598959110432">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="528" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.2560.1417@0.23.2560.1417" timestamp="1596784335042" />
     <state x="528" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/2560.508.1024.617/0.23.2560.1417@0.23.2560.1417" timestamp="1594378723187" />
     <state x="528" y="279" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1598959110432" />
-    <state width="1638" height="226" key="GridCell.Tab.0.bottom" timestamp="1599214014914">
+    <state width="1238" height="226" key="GridCell.Tab.0.bottom" timestamp="1600067756075">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1638" height="226" key="GridCell.Tab.0.bottom/-538.-1417.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1598886179811" />
-    <state width="1638" height="226" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1599214014914" />
+    <state width="1238" height="226" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1600067756075" />
     <state width="2518" height="224" key="GridCell.Tab.0.bottom/0.23.2560.1417/-1440.318.1440.877@0.23.2560.1417" timestamp="1592472208813" />
     <state width="2518" height="312" key="GridCell.Tab.0.bottom/0.23.2560.1417@0.23.2560.1417" timestamp="1596784362733" />
     <state width="2518" height="312" key="GridCell.Tab.0.bottom/2560.508.1024.617/0.23.2560.1417@0.23.2560.1417" timestamp="1597067811580" />
-    <state width="2518" height="226" key="GridCell.Tab.0.bottom/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599032528500" />
-    <state width="1638" height="226" key="GridCell.Tab.0.center" timestamp="1599214014913">
+    <state width="1638" height="226" key="GridCell.Tab.0.bottom/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599899291248" />
+    <state width="1238" height="226" key="GridCell.Tab.0.center" timestamp="1600067756075">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1638" height="226" key="GridCell.Tab.0.center/-538.-1417.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1598886179795" />
-    <state width="1638" height="226" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1599214014913" />
+    <state width="1238" height="226" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1600067756075" />
     <state width="2518" height="224" key="GridCell.Tab.0.center/0.23.2560.1417/-1440.318.1440.877@0.23.2560.1417" timestamp="1592472208812" />
     <state width="2518" height="312" key="GridCell.Tab.0.center/0.23.2560.1417@0.23.2560.1417" timestamp="1596784362732" />
     <state width="2518" height="312" key="GridCell.Tab.0.center/2560.508.1024.617/0.23.2560.1417@0.23.2560.1417" timestamp="1597067811577" />
-    <state width="2518" height="226" key="GridCell.Tab.0.center/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599032528499" />
-    <state width="1638" height="226" key="GridCell.Tab.0.left" timestamp="1599214014913">
+    <state width="1638" height="226" key="GridCell.Tab.0.center/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599899291247" />
+    <state width="1238" height="226" key="GridCell.Tab.0.left" timestamp="1600067756074">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1638" height="226" key="GridCell.Tab.0.left/-538.-1417.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1598886179793" />
-    <state width="1638" height="226" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1599214014913" />
+    <state width="1238" height="226" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1600067756074" />
     <state width="2518" height="224" key="GridCell.Tab.0.left/0.23.2560.1417/-1440.318.1440.877@0.23.2560.1417" timestamp="1592472208812" />
     <state width="2518" height="312" key="GridCell.Tab.0.left/0.23.2560.1417@0.23.2560.1417" timestamp="1596784362732" />
     <state width="2518" height="312" key="GridCell.Tab.0.left/2560.508.1024.617/0.23.2560.1417@0.23.2560.1417" timestamp="1597067811575" />
-    <state width="2518" height="226" key="GridCell.Tab.0.left/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599032528499" />
-    <state width="1638" height="226" key="GridCell.Tab.0.right" timestamp="1599214014914">
+    <state width="1638" height="226" key="GridCell.Tab.0.left/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599899291247" />
+    <state width="1238" height="226" key="GridCell.Tab.0.right" timestamp="1600067756075">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1638" height="226" key="GridCell.Tab.0.right/-538.-1417.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1598886179798" />
-    <state width="1638" height="226" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1599214014914" />
+    <state width="1238" height="226" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1600067756075" />
     <state width="2518" height="224" key="GridCell.Tab.0.right/0.23.2560.1417/-1440.318.1440.877@0.23.2560.1417" timestamp="1592472208813" />
     <state width="2518" height="312" key="GridCell.Tab.0.right/0.23.2560.1417@0.23.2560.1417" timestamp="1596784362733" />
     <state width="2518" height="312" key="GridCell.Tab.0.right/2560.508.1024.617/0.23.2560.1417@0.23.2560.1417" timestamp="1597067811578" />
-    <state width="2518" height="226" key="GridCell.Tab.0.right/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599032528500" />
+    <state width="1638" height="226" key="GridCell.Tab.0.right/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1599899291248" />
     <state x="520" y="233" key="SettingsEditor" timestamp="1598444234394">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -268,7 +716,7 @@
     <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/2560.508.1280.777/0.23.2560.1417@0.23.2560.1417" timestamp="1592915855153" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/xrgonomics$server.coverage" NAME="server Coverage Results" MODIFIED="1599214014906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
+    <SUITE FILE_PATH="coverage/xrgonomics$server.coverage" NAME="server Coverage Results" MODIFIED="1599906793105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
     <SUITE FILE_PATH="coverage/xrgonomics$file_io.coverage" NAME="file_io Coverage Results" MODIFIED="1592055087874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
     <SUITE FILE_PATH="coverage/xrgonomics$biomechanics.coverage" NAME="biomechanics Coverage Results" MODIFIED="1591968008667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />
     <SUITE FILE_PATH="coverage/xrgonomics$arm_position_helpers.coverage" NAME="arm_position_helpers Coverage Results" MODIFIED="1591799397742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python_toolkit" />

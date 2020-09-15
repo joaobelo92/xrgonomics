@@ -221,7 +221,6 @@ def drop_tables(conn):
     conn.commit()
 
 
-# TODO: update name to activation something
 def get_voxels_with_pose_cursor(conn):
     cursor = conn.cursor()
     sql = '''SELECT voxels.id, arm_poses.arm_pose_id, MIN(muscle_activation), arm_poses.reserve
@@ -255,29 +254,3 @@ def get_min_max_rula(conn):
     cursor.execute(sql)
     return cursor.fetchone()
 
-# max_activation = 0.23175466239999998
-# max_reserve = 1135.5161096400002
-# voxels_new[:, 6] /= max_activation
-# voxels_new[:, 7] /= max_reserve
-# # only for visualization purposes multiply muscle activation
-# voxels_new[:, 8] = voxels_new[:, 6] * 7.5 + voxels_new[:, 7] * 2.5
-# voxels_sorted = voxels_new[voxels_new[:, 8].argsort()]
-
-#
-
-# sql = '''SELECT id FROM voxels WHERE id MATCH circle(0, 0, 30.0)'''
-# cursor.execute(sql)
-# print(cursor.fetchone())
-# print(get_min_max_rula(c))
-# print(get_max_ca(c))
-# print(get_voxels_with_pose_cursor(c).fetchall())
-# print(get_voxels_with_pose_cursor(c).fetchall())
-# print(get_voxels_limits(c))
-# print(count_poses(c))
-# create_tables(c)
-# print(get_anchor_point(c, 4, 5, 2))
-# insert_anchor(c, (1, 1, 4, 7, 3, 4))
-# print(count_anchors(c))
-# r = query_anchor_point(c, 10, 23, 10)
-# for row in r:
-#     print(row)
