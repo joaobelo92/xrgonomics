@@ -132,8 +132,6 @@ class XRgonomics:
 
         self.conn.commit()
 
-    # compute_weigthed_metrics('poses.db')
-
     def get_voxel_poses(self, x, y, z, metric):
         voxel_id = pose_database.get_voxel_point(self.conn, x, y, z)[0]
         poses = pose_database.get_poses_in_voxel(self.conn, voxel_id, metric).fetchall()
@@ -161,9 +159,6 @@ class XRgonomics:
                 })
             self.is_updated += 1
         return result
-
-    # def compute_arm_pos(self, end_effector, arm_proper_length, forearm_hand_length):
-    #     return armpos.compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_length)
 
     def get_interaction_space_limits(self):
         limits = pose_database.get_voxels_limits(self.conn)
@@ -355,6 +350,7 @@ class XRgonomics:
         if np.array_equal(new_hull.vertices, polygon.vertices):
             return True
         return False
+
 
 def get_sql_constraint(axis, constraint, value):
     axis_strs = ['x', 'y', 'z']

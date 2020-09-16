@@ -152,16 +152,10 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
     error_end_effector_acc = 0
 
     for elbow_pos in elbow_positions:
-
-        # print(linalg_helpers.magnitude(elbow_pos))
-        # To get the angle on a axis, we retrieve the angle of a point disregarding the non-relevant axis
-
-        # rotation on y axis
-
         elv_angle = math.atan2(elbow_pos[0], elbow_pos[2])
         if math.degrees(elv_angle) > 130:
             continue
-        # (math.cos(elv_angle)*arm_proper_length gives size of 'x' on plane z
+
         # both values are normalized
         if not math.isclose(math.cos(elv_angle), 0, abs_tol=1e-5):
             s2 = elbow_pos[2] / (math.cos(elv_angle) * arm_proper_length)
@@ -169,10 +163,6 @@ def compute_anchor_arm_poses(end_effector, arm_proper_length, forearm_hand_lengt
             s2 = elbow_pos[0] / (math.sin(elv_angle) * arm_proper_length)
 
         shoulder_elv = math.atan2(s2, -elbow_pos[1] / arm_proper_length)
-        # or as an alternative
-        # shoulder_elv = math.asin(linalg_helpers.normalize(elbow_pos)[1])
-        # shoulder_elv = math.pi/2 + shoulder_elv if shoulder_elv > 0 else math.pi/2 + shoulder_elv
-
         elbow_flexion = linalg_helpers.law_of_cosines_angle(arm_proper_length, forearm_hand_length,
                                                             linalg_helpers.magnitude(end_effector), radians=False)
         elbow_flexion_osim = 180 - elbow_flexion
