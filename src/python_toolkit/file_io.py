@@ -58,13 +58,6 @@ def read_so_results(filepath, num_muscles=50):
     # min_activation_idx = np.argmin(avg_activations)
     # print(np.sum(reserve_sum))
     min_reserve_idx = np.argmin(reserve_sum)
-    # ignore attempts with residuals close to 0 - OpenSim issue
-    # ignore irrelevant muscles ?
-    # print(np.all(reserve != 0, axis=1))
-    # print(reserve_sum, len(reserve_sum))
-    # print(avg_activations, len(avg_activations))
-    # print(min_activation_idx)
-    # print(min_reserve_idx)
     print(np.sum(avg_activations[min_reserve_idx]), reserve_sum[min_reserve_idx])
     return np.sum(avg_activations[min_reserve_idx]), reserve_sum[min_reserve_idx]
 
