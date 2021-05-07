@@ -1,4 +1,4 @@
-# muscle-activation-optimization
+# xrgonomics
 
 ## To run XRgonomics API (basic functionality):
 Install python 3.8 (make sure your python sqlite library supports r*-trees).
